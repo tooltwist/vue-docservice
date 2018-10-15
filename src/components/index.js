@@ -27,6 +27,13 @@ function install (Vue, options) {
     console.error("Vue.use(Docservice) has already been called.")
     return
   }
+  let tmpvue = new Vue()
+  let $content = tmpvue.$content
+  if ( !$content) {
+    console.error("$content nto defined. Please register ContentService before cslling Vue.use(Docservice).")
+    return
+  }
+
   _Vue = Vue
 
   // Create ourselves a Docservice Object
@@ -78,9 +85,9 @@ function install (Vue, options) {
    *  Register our components with Contentservice
    */
   let tmpvue = new Vue()
-  tmpvue.$content.registerLayoutType(Vue, 'google-slides', 'content-google-slides', ContentGoogleSlides, ContentGoogleSlidesProps)
-  tmpvue.$content.registerLayoutType(Vue, 'google-sheets', 'content-google-sheets', ContentGoogleSheets, ContentGoogleSheetsProps)
-  tmpvue.$content.registerLayoutType(Vue, 'google-docs', 'content-google-docs', ContentGoogleDocs, ContentGoogleDocsProps)
+  $content.registerLayoutType(Vue, 'google-slides', 'content-google-slides', ContentGoogleSlides, ContentGoogleSlidesProps)
+  $content.registerLayoutType(Vue, 'google-sheets', 'content-google-sheets', ContentGoogleSheets, ContentGoogleSheetsProps)
+  $content.registerLayoutType(Vue, 'google-docs', 'content-google-docs', ContentGoogleDocs, ContentGoogleDocsProps)
 
   return _docservice
 } //- install()

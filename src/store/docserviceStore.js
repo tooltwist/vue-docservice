@@ -56,7 +56,7 @@ export const actions = {
     console.log(`In Action docservice/scanDocument(docID=${docID})`)
 
     commit('scanState', { currentlyScanning: true, message: 'scanning...'})
-    vm.$content.scanDocument(vm, docID)
+    vm.$docservice.scanDocument(vm, docID)
       .then(result => {
         commit('scanState', { currentlyScanning: true, message: 'updating...'})
         console.log(`result of save:`, result)
