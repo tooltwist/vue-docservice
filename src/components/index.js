@@ -22,7 +22,7 @@ let _store = null
 
 
 function install (Vue, options) {
-  // console.log('Docservice.install()', options)
+  console.log('Docservice.install()', options)
   if (_docservice) {
     console.error("Vue.use(Docservice) has already been called.")
     return
@@ -30,7 +30,7 @@ function install (Vue, options) {
   let tmpvue = new Vue()
   let $content = tmpvue.$content
   if ( !$content) {
-    console.error("$content nto defined. Please register ContentService before cslling Vue.use(Docservice).")
+    console.error("$content not defined. Please register ContentService before cslling Vue.use(Docservice).")
     return
   }
 
@@ -59,7 +59,7 @@ function install (Vue, options) {
         this._docserviceRoot = this
         this._docservice = _docservice
         // this._docservice.init(this)
-        Vue.util.defineReactive(this, '_docservice', this.docservice)
+        Vue.util.defineReactive(this, '_docservice', this.$docservice)
         // Vue.util.defineReactive(this, '_docservice', this._docservice.jwt)
         // Vue.util.defineReactive(this, '_docservice', this._docservice.fromCache)
       } else {

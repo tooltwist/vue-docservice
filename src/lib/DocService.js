@@ -322,7 +322,7 @@ class Docservice {
       }
 
       let url = `${this.endpoint()}/element`;
-      //let params = element
+      let params = element
       axios({
         method: 'put',
         url,
@@ -331,7 +331,7 @@ class Docservice {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        data: element
+        data: params
       })
         .then(response => {
           // JSON responses are automatically parsed.
@@ -340,7 +340,7 @@ class Docservice {
           return resolve('ok');
         })
         .catch(e => {
-          axiosError(vm, url, element, e)
+          axiosError(vm, url, params, e)
           reject(e)
         })
 
@@ -371,7 +371,6 @@ class Docservice {
   }// update()
 
   /*
-   *DSZZZZ Should be moved to docservice
    *  Scan an existing document for data values, and regenerate documents that
    *  might use those values.
    */
@@ -411,7 +410,7 @@ class Docservice {
           return resolve(reply);
         })
         .catch(e => {
-          axiosError(vm, url, element, e)
+          axiosError(vm, url, params, e)
           reject(e)
         })
 

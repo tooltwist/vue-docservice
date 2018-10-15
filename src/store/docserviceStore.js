@@ -76,7 +76,7 @@ export const actions = {
         }, 5000)
       })
       .catch(e => {
-        commit('scanState', { currentlyScanning: false })
+        commit('scanState', { currentlyScanning: false, message: 'error' })
         let desc = `Error scanning document`
         console.log(desc, e)
         //state.saveMsg = ERROR
