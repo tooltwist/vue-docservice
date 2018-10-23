@@ -2168,6 +2168,13 @@ var store = global[SHARED] || (global[SHARED] = {});
 
 /***/ }),
 
+/***/ "561d":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "5ca1":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2290,13 +2297,6 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 module.exports = str => encodeURIComponent(str).replace(/[!'()*]/g, x => `%${x.charCodeAt(0).toString(16).toUpperCase()}`);
 
-
-/***/ }),
-
-/***/ "6702":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -3386,17 +3386,6 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 /***/ }),
 
-/***/ "aec3":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_f4836ec6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("6702");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_f4836ec6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_f4836ec6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_f4836ec6_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
 /***/ "b50d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4092,6 +4081,17 @@ module.exports = function (key) {
   return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
 };
 
+
+/***/ }),
+
+/***/ "ca6d":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_418833d8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("561d");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_418833d8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_418833d8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_418833d8_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -5827,8 +5827,8 @@ function () {
     this.host = options.host ? options.host : 'api.docservice.io';
     this.port = options.port ? options.port : 80;
     this.version = options.version ? options.version : '2.0';
-    this.apikey = options.apikey; // this.knownElementTypes = [ ]
-
+    this.apikey = options.apikey;
+    this.knownElementTypes = [];
     console.log('&&& Docservice constructor', options);
     this.docservice = {};
 
@@ -5836,21 +5836,7 @@ function () {
       this.dshost = options.docservice.host ? options.docservice.host : 'api.docservice.io';
       this.dsport = opdsdocservice.version = options.docservice.version ? options.docservice.version : '2.0';
       this.dsapikey = options.docservice.apikey;
-    } // // Decide which icon set to use with a defaultIconPack option.
-    // // Loosely based on:
-    // //    https://buefy.github.io/#/documentation/constructor-options
-    // //
-    // // Currently recognise:
-    // //    fa (font-awsome 4)
-    // //    fas (font-awsome 5)
-    // this.defaultIconPack = options.defaultIconPack ? options.defaultIconPack : 'fa'
-    // this.icons = (pack) => { return this.defaultIconPack === pack }
-    //
-    // if (options.defaultIconPack) {
-    //   console.log(`Will use icon pack ${options.defaultIconPack}`);
-    // }
-    // console.log(`---> icons ---> ${this.defaultIconPack}`);
-    // Remember the options
+    } // Remember the options
 
 
     this.options = options; // Current user details
@@ -5877,232 +5863,7 @@ function () {
       var protocol = this.protocol ? this.protocol : 'http';
       var endpoint = "".concat(protocol, "://").concat(this.host, ":").concat(this.port, "/api/").concat(this.version, "/").concat(this.apikey);
       return endpoint;
-    } // registerLayoutType (vm, layoutType, componentName, component, propertyComponent) {
-    //   let propertyComponentName = `${componentName}-props`
-    //
-    //   // Remember the component names used for this type of layout element.
-    //   this.knownElementTypes[layoutType] = {
-    //     layoutType,
-    //     componentName,
-    //     propertyComponentName,
-    //     component,
-    //     propertyComponent
-    //   }
-    //
-    //   // Define the components
-    //   console.log(`registering ${componentName}`)
-    //   vm.component(componentName, component)
-    //   vm.component(propertyComponentName, propertyComponent)
-    // }
-    //
-    // // -> { component, propertyComponent }
-    // getLayoutType (layoutType) {
-    //   //console.error(`getLayoutType(${layoutType})`)
-    //   return this.knownElementTypes[layoutType]
-    // }
-    // safeJSON (json) {
-    //   return util.safeJson(json)
-    // }
-    //----------------------------------------------------------------------------//
-    //                          NEW STUFF FROM CROWDHOUND                         //
-    //----------------------------------------------------------------------------//
-    // /**
-    //  *	Select may be in various formats:
-    //  *		select(vm, '$my-anchor', 'user-list', callback) - select a thread by it's anchor and anchorType.
-    //  *		select(vm, rootId, callback) - select a thread. Anchor will not be created if it doesn't exist.
-    //  *		select(vm, params, callback)
-    //  *	Select may be in various formats:
-    //  *		select(vm, '$my-anchor', 'user-list') - select a thread by it's anchor and anchorType.
-    //  *		select(vm, rootId) - select a thread. Anchor will NOT be created if it doesn't exist.
-    //  *		select(vm, params)
-    //  */
-    // select(vm, param1, param2) {
-    //
-    //   return new Promise((resolve, reject) => {
-    //
-    //     if (this.options.debug) {
-    //       console.log('select()');
-    //     }
-    //     if (this.disabled) {
-    //       return reject(new Error('Docservice disabled'));
-    //     }
-    //
-    //     // Work out what combination of parameters we've been passed
-    //     var type1 = typeof(param1);
-    //     var type2 = typeof(param2);
-    //     var type3 = typeof(param3);
-    //
-    //     if (arguments.length === 3) {
-    //
-    //       // Short form:  select(vm, anchor, anchorType)
-    //       // Check the anchor starts with $
-    //       var anchor = param1;
-    //       var anchorType = param2;
-    //       if (typeof(anchor) != 'string') {
-    //         console.log('CrowdHound.select: anchor must be a string: ' + anchor + ', ' + typeof(anchor));
-    //         return reject(new Error('invalid anchor parameter'));
-    //       }
-    //       if (anchor.charAt(0) != '$') {
-    //         console.log('CrowdHound.select: anchor must start with \'$\': ' + anchor);
-    //         return reject(new Error('invalid anchor parameter - must start with \'$\''));
-    //       }
-    //       if (typeof(anchorType) != 'string') {
-    //         console.log('CrowdHound.select: anchorType must be a string: ' + anchorType + ', ' + typeof(anchorType));
-    //         return reject(new Error('invalid anchor parameter'));
-    //       }
-    //       console.log('select anchor')
-    //       var params = {
-    //         elementId: anchor,
-    //         type: anchorType
-    //       };
-    //     } else if (arguments.length === 2) {
-    //
-    //       if (type1 == 'object') {
-    //
-    //         // select(vm, params)
-    //         var params = param1
-    //       } else {
-    //
-    //         // select(vm, rootId) - select a thread. Anchor will NOT be created if it doesn't exist.
-    //         var params = {
-    //           elementId: '' + param1
-    //         };
-    //       }
-    //
-    //     } else {
-    //       reject('Unknown parameters to CrowdHound.select');
-    //       // if (type1 == 'function') {
-    //       //   var callback = param1;
-    //       //   return callback(new Error('Invalid parameters'));
-    //       // }
-    //       // if (typeof(type4) == 'function') {
-    //       //   var callback = param4;
-    //       //   return callback(new Error('Invalid parameters'));
-    //       // }
-    //       // if (typeof(type5) == 'function') {
-    //       //   var callback = param5;
-    //       //   return callback(new Error('Invalid parameters'));
-    //       // }
-    //       return;
-    //     }
-    //
-    //     //var elementType = 'file';
-    //     //		var url = _API_URL + '/elements?type=' + elementType;
-    //     var url = `${this.endpoint()}/elements`;
-    //     // url = addAuthenticationToken(url);
-    //     if (this.options.debug) {
-    //       console.log('URL= ' + url)
-    //     }
-    //     console.log('CrowdHound.select()')
-    //     console.log('  url=' + url)
-    //     console.log('  params=', params)
-    //
-    //
-    //
-    //     axios({
-    //       method: 'get',
-    //       url,
-    //       headers: {
-    //         // 'Authorization': 'Bearer ' + this.$docservice.jwt,
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //       },
-    //       params: params
-    //     })
-    //       .then(response => {
-    //         // JSON responses are automatically parsed.
-    //         //console.log(`RESPONSE IS`, response.data)
-    //         let reply = response.data
-    //
-    //         // If the first item in the array is the current user, pluck it off the array now.
-    //         let userdata = null
-    //         if ((reply instanceof Array) && reply.length > 0 && reply[0].__currentUser) {
-    //           userdata = reply[0];
-    //           reply.shift(); // remove from the array
-    //         }
-    //
-    //         let selection = {
-    //           cooked: false,
-    //           params: params,
-    //           elements: reply,
-    //         };
-    //         return resolve(selection);
-    //       })
-    //       .catch(e => {
-    //         axiosError(vm, url, params, e)
-    //         reject(e)
-    //       })
-    //   })// new promise
-    //
-    // } //- select()
-    // /*
-    //  *  Update an existing element.
-    //  *	If an anchor and a type is provided, the element will be created
-    //  *	if it does not already exist.
-    //  */
-    // update (vm, element) {
-    //
-    //   console.log(`Docservice.js:update()`, element)
-    //   console.log(`element.description.length=`, element.description.length)
-    //
-    //   return new Promise((resolve, reject) => {
-    //
-    //     if (this.options.debug) {
-    //       console.log('select()');
-    //     }
-    //     if (this.disabled) {
-    //       return reject(new Error('Docservice disabled'));
-    //     }
-    //
-    //     let url = `${this.endpoint()}/element`;
-    //     let params = element
-    //     axios({
-    //       method: 'put',
-    //       url,
-    //       headers: {
-    //         // 'Authorization': 'Bearer ' + this.$docservice.jwt,
-    //         'Content-Type': 'application/json',
-    //         'Accept': 'application/json'
-    //       },
-    //       data: params
-    //     })
-    //       .then(response => {
-    //         // JSON responses are automatically parsed.
-    //         //console.log(`RESPONSE IS`, response.data)
-    //         // let reply = response.data
-    //         return resolve('ok');
-    //       })
-    //       .catch(e => {
-    //         axiosError(vm, url, params, e)
-    //         reject(e)
-    //       })
-    //
-    //
-    //   	// var API_URL = '//' + CROWDHOUND_HOST + ':' + CROWDHOUND_PORT + '/api/' + CROWDHOUND_VERSION + '/' + CROWDHOUND_TENANT;
-    //   	// var url = API_URL + '/element';
-    //   	// var url = Curia.addAuthenticationToken(url);
-    //     //
-    //   	// console.log('url   =' + url);
-    //   	// console.log('element=', element);
-    //     //
-    //   	// $.ajax({
-    //   	// 	type : 'PUT',
-    //   	// 	url : url,
-    //   	// 	data : element,
-    //   	// 	success : function(response) {
-    //     //
-    //   	// 		return callback(null);
-    //   	// 	},
-    //   	// 	error : function(jqxhr, textStatus, errorThrown) {
-    //   	// 		// Failed AJAX call
-    //   	// 		console.log('An error occurred while updating an element.\n  status: ' + jqxhr.status + "\n  responseText: ", qXHR.responseText);
-    //   	// 		return callback(niceError(jqxhr, textStatus, errorThrown));
-    //   	// 	}
-    //   	// });
-    //
-    //   })//- promise
-    // }// update()
-
+    }
     /*
      *  Scan an existing document for data values, and regenerate documents that
      *  might use those values.
@@ -6147,7 +5908,7 @@ function () {
           reject(e);
         });
       }); //- promise
-    } // update()
+    } // scanDocument()
 
   }]);
 
@@ -6320,12 +6081,12 @@ var namespaced = true;
   getters: getters,
   actions: actions
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=f4836ec6&scoped=true&lang=pug&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-slides",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container"},[_c('iframe',{attrs:{"src":_vm.src,"frameborder":"0","zwidth":"640","zheight":"389","allowfullscreen":"true","mozallowfullscreen":"true","webkitallowfullscreen":"true"}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google slides")],1),_vm._m(0)]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"})])])}
-var staticRenderFns = [function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"})])}]
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=418833d8&scoped=true&lang=pug&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-slides",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container"},[_c('iframe',{attrs:{"src":_vm.src,"frameborder":"0","zwidth":"640","zheight":"389","allowfullscreen":"true","mozallowfullscreen":"true","webkitallowfullscreen":"true"}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google slides")],1),_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])])}
+var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=f4836ec6&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=418833d8&scoped=true&lang=pug&
 
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/defineProperty.js
 function _defineProperty(obj, key, value) {
@@ -6656,6 +6417,22 @@ var _name$props$mixins$da;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ var ContentGoogleSlidesvue_type_script_lang_js_ = (_name$props$mixins$da = {
@@ -6718,6 +6495,18 @@ var _name$props$mixins$da;
 
       return '';
     },
+    haveDocId: function haveDocId() {
+      var id = this.element['docID'];
+
+      if (id && id.trim()) {
+        return true;
+      }
+
+      return false;
+    },
+    modeDescription: function modeDescription() {
+      return '';
+    },
     sectionStyle: function sectionStyle() {
       var style = {};
       copyStyle(this.element, style, 'background-color');
@@ -6751,8 +6540,8 @@ var _name$props$mixins$da;
 } */
 // CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=script&lang=js&
  /* harmony default export */ var widgets_ContentGoogleSlidesvue_type_script_lang_js_ = (ContentGoogleSlidesvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=style&index=0&id=f4836ec6&lang=scss&scoped=true&
-var ContentGoogleSlidesvue_type_style_index_0_id_f4836ec6_lang_scss_scoped_true_ = __webpack_require__("aec3");
+// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=style&index=0&id=418833d8&lang=scss&scoped=true&
+var ContentGoogleSlidesvue_type_style_index_0_id_418833d8_lang_scss_scoped_true_ = __webpack_require__("ca6d");
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -6864,7 +6653,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "f4836ec6",
+  "418833d8",
   null
   
 )
@@ -7833,10 +7622,76 @@ function components_install(Vue, options) {
   /*
    *  Register our components with Contentservice
    */
+  // Google Slides Widget
 
-  $content.registerLayoutType(Vue, 'google-slides', 'content-google-slides', ContentGoogleSlides, ContentGoogleSlidesProps);
-  $content.registerLayoutType(Vue, 'google-sheets', 'content-google-sheets', ContentGoogleSheets, ContentGoogleSheetsProps);
-  $content.registerLayoutType(Vue, 'google-docs', 'content-google-docs', ContentGoogleDocs, ContentGoogleDocsProps);
+  $content.registerWidget(Vue, {
+    name: 'google-slides',
+    label: 'Slides',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-powerpoint-o',
+    iconClass5: 'far fa-file-powerpoint',
+    dragtype: 'component',
+    // Register native Vue templates
+    componentName: 'content-google-slides',
+    component: ContentGoogleSlides,
+    propertyComponent: ContentGoogleSlidesProps,
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-slides' //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+
+      }
+    }
+  }); // Google Sheets Widget
+
+  $content.registerWidget(Vue, {
+    name: 'google-sheets',
+    label: 'Sheets',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-excel-o',
+    iconClass5: 'far fa-file-excel',
+    dragtype: 'component',
+    // Register native Vue templates
+    componentName: 'content-google-sheets',
+    component: ContentGoogleSheets,
+    propertyComponent: ContentGoogleSheetsProps,
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-sheets' //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+
+      }
+    }
+  }); // Google Doc Widget
+
+  $content.registerWidget(Vue, {
+    name: 'google-docs',
+    label: 'Doc',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-word-o',
+    iconClass5: 'far fa-file-word',
+    dragtype: 'component',
+    // Register native Vue templates
+    componentName: 'content-google-docs',
+    component: ContentGoogleDocs,
+    propertyComponent: ContentGoogleDocsProps,
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-docs' //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+
+      }
+    }
+  });
   return _docservice;
 } //- install()
 
