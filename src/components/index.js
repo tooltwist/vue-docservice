@@ -84,9 +84,86 @@ function install (Vue, options) {
   /*
    *  Register our components with Contentservice
    */
-  $content.registerLayoutType(Vue, 'google-slides', 'content-google-slides', ContentGoogleSlides, ContentGoogleSlidesProps)
-  $content.registerLayoutType(Vue, 'google-sheets', 'content-google-sheets', ContentGoogleSheets, ContentGoogleSheetsProps)
-  $content.registerLayoutType(Vue, 'google-docs', 'content-google-docs', ContentGoogleDocs, ContentGoogleDocsProps)
+
+  // Google Slides Widget
+  $content.registerWidget(Vue, {
+    name: 'google-slides',
+    label: 'Slides',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-powerpoint-o',
+    iconClass5: 'far fa-file-powerpoint',
+    dragtype: 'component',
+
+    // Register native Vue templates
+    componentName: 'content-google-slides',
+    component: ContentGoogleSlides,
+    propertyComponent: ContentGoogleSlidesProps,
+
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-slides',
+        //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+      }
+    }
+  })
+
+
+  // Google Sheets Widget
+  $content.registerWidget(Vue, {
+    name: 'google-sheets',
+    label: 'Sheets',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-excel-o',
+    iconClass5: 'far fa-file-excel',
+    dragtype: 'component',
+
+    // Register native Vue templates
+    componentName: 'content-google-sheets',
+    component: ContentGoogleSheets,
+    propertyComponent: ContentGoogleSheetsProps,
+
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-sheets',
+        //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+      }
+    }
+  })
+
+
+  // Google Doc Widget
+  $content.registerWidget(Vue, {
+    name: 'google-docs',
+    label: 'Doc',
+    category: 'Google Docs',
+    iconClass: 'fa fa-file-word-o',
+    iconClass5: 'far fa-file-word',
+    dragtype: 'component',
+
+    // Register native Vue templates
+    componentName: 'content-google-docs',
+    component: ContentGoogleDocs,
+    propertyComponent: ContentGoogleDocsProps,
+
+    // Identical structure to a CUT or COPY from edit mode.
+    data: {
+      type: "contentservice.io",
+      version: "1.0",
+      source: "toolbox",
+      layout: {
+        type: 'google-docs',
+        //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl'
+      }
+    }
+  })
 
   return _docservice
 } //- install()
