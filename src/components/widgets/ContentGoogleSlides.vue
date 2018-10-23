@@ -14,10 +14,26 @@
         | google slides
       .container
         .my-slides-container.my-dummy-iframe
+          .valign
+            | Google Slides
+            br
+            .modeDescription(v-if="haveDocId")
+              | {{modeDescription}}
+            .modeError(v-else)
+              br
+              | Document not specified
 
     // Edit, layout modes
     .container(v-else, v-on:click.stop="select(element)")
       .my-slides-container.my-dummy-iframe
+        .valign
+          | Google Slides
+          br
+          .modeDescription(v-if="haveDocId")
+            | {{modeDescription}}
+          .modeError(v-else)
+            br
+            | Document not specified
 </template>
 
 <script>
@@ -83,6 +99,18 @@ export default {
           return src
         }
       }
+      return ''
+    },
+
+    haveDocId: function () {
+      let id = this.element['docID']
+      if (id && id.trim()) {
+        return true
+      }
+      return false
+    },
+
+    modeDescription: function() {
       return ''
     },
 
@@ -152,6 +180,28 @@ export default {
 
     &.my-dummy-iframe {
       background-color: $c-embed-border-color;
+
+      .valign {
+        position: relative;
+        text-align: left;
+        margin-top: 25px;
+        margin-left: 25px;
+        // top: 120px;
+        font-size: 1.5em;
+        font-family: Arial;
+        font-weight: lighter;
+        color: #a0a0a0;
+
+        .modeDescription {
+          font-size: 16px;
+        }
+        .modeError {
+          font-size: 20px;
+          color: $c-editbar-color;
+          font-weight: bold;
+          font-style: italic;
+        }
+      }
     }
 
     iframe,
