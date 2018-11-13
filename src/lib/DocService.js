@@ -139,17 +139,17 @@ class Docservice {
         })
 
     })//- promise
-  },// scanDocument()
+  }// scanDocument()
 
   refresh (state, { }) {
     console.log('Docservice.refresh()')
     this.store.commit('refreshMutation', { })
-  },
+  }
 
   mapDocument(state, { originalDocumentID, replacementDocumentID, userID }) {
     console.log('Docservice.mapDocument()')
     this.store.commit('mapDocumentMutation', { originalDocumentID, replacementDocumentID, userID })
-  },
+  }
 
   scanState(state, { currentlyScanning, message }) {
     console.log('Docservice.scanState()')
