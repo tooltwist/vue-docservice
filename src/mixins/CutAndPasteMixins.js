@@ -4,15 +4,15 @@ export default {
   computed: {
     //
     // extraDebug: function () {
-    //   if (this.$store && this.$store.state && this.$store.state.contentLayout) {
-    //     return this.$store.state.contentLayout.extraDebug
+    //   if (this.$content && this.$content.store.state.extraDebug) {
+    //     return this.$content.store.state.extraDebug
     //   }
-    //   console.error('this.$store.state.contentLayout.extraDebug not defined');
+    //   console.error('this.$content.store.state.extraDebug not defined');
     //   return true
     // },
     //
     // isEditing: function () {
-    //   switch (this.$store.state.contentLayout.mode) {
+    //   switch (this.$content.store.state.mode) {
     //     case 'view':
     //     case 'live':
     //       return false
@@ -21,8 +21,8 @@ export default {
     // },
     //
     // pageEditMode: function () {
-    //   if (this.$store && this.$store.state && this.$store.state.contentLayout && this.$store.state.contentLayout.mode) {
-    //     return this.$store.state.contentLayout.mode
+    //   if (this.$content && this.$content.store.state.mode) {
+    //     return this.$content.store.state.mode
     //   }
     //   return mode
     // },
@@ -36,7 +36,7 @@ export default {
     //   if (this.pageEditMode === 'layout' || this.pageEditMode === 'debug') {
     //     return true
     //   }
-    //   if (this.pageEditMode === 'edit' && this.$store.state.contentLayout.dragging) {
+    //   if (this.pageEditMode === 'edit' && this.$content.store.state.dragging) {
     //     return true
     //   }
     //   return false
@@ -49,7 +49,7 @@ export default {
     //   console.log(`selectThisElement()`)
     //   if (this.pageEditMode != 'view') {
     //     let element = this.element
-    //     this.$store.commit('contentLayout/setPropertyElement', { element })
+    //     this.$content.setPropertyElement({ element })
     //   }
     // },
     //
@@ -80,7 +80,7 @@ export default {
     */
     deleteMyElement ( ) {
       console.log(`Deleting element ${this.element.id}`)
-      this.$store.dispatch('contentLayout/deleteElementAction', { vm: this, element: this.element })
+      this.$content.deleteElement({ vm: this, element: this.element })
     },
 
     myElementCopyToClipboard ( ) {
@@ -91,7 +91,7 @@ export default {
     myElementCutToClipboard ( ) {
       console.log(`myElementCutToClipboard()`)
       let json = this.bundleMyElement()
-      this.$store.dispatch('contentLayout/deleteElementAction', { vm: this, element: this.element })
+      this.$content.deleteElement({ vm: this, element: this.element })
       return json
     },
 
@@ -117,8 +117,8 @@ export default {
       var blob = new Blob([json], {type: "text/plain;charset=utf-8"});
 
       let filename = 'layout'
-      if (this.$store.state.contentLayout.anchor) {
-        filename += '-' + this.$store.state.contentLayout.anchor.substring(1)
+      if (this.$content.store.state.anchor) {
+        filename += '-' + this.$content.store.state.anchor.substring(1)
       }
       filename += `-${this.element.type}-${this.element.id}.txt`
       FileSaver.saveAs(blob, filename);
@@ -130,7 +130,7 @@ export default {
       let payload = {
         type: 'contentservice.io',
         version: '1.0',
-        source: this.$store.state.contentLayout.anchor,
+        source: this.$content.store.state.anchor,
         timestamp: new Date(),
         layout: this.element
       }

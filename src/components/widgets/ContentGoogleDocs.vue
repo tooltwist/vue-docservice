@@ -46,7 +46,7 @@ export default {
     //- },
 
     src: function ( ) {
-      console.log(`ContentGoogleDocs METHOD src`, this.$store.getters);
+      console.log(`ContentGoogleDocs METHOD src`, this.$docservice.store.getters);
 
       let docID = this.element['docID']
       if (docID) {
@@ -59,7 +59,7 @@ export default {
 
           // Get the substitute document ID we'll use for this user.
           let userID = null //ZZZZZZ
-          let replacementDocID = this.$store.getters['docservice/replacementDocID'](docID, userID)
+          let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
 
           console.log(`docs replacementDocID: ${docID} -> ${replacementDocID}`);
           let src = `https://docs.google.com/a/tooltwist.com/document/d/e/${replacementDocID}/pub?embedded=true`
@@ -85,7 +85,7 @@ export default {
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
-        this.$store.commit('contentLayout/setPropertyElement', { element })
+        this.$content.setPropertyElement({ element })
       }
     },
   }

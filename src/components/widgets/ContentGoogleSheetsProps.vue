@@ -52,7 +52,7 @@ export default {
   computed: {
 
     // We cannot update the element directly - it is stored
-    // in this.$store and must be updated with a 'commit'.
+    // in this.$content.store and must be updated with a 'commit'.
     // See https://vuex.vuejs.org/en/forms.html
     docID: {
       get () {
@@ -61,7 +61,7 @@ export default {
       },
       set (value) {
         value = value.trim()
-        this.$store.dispatch('contentLayout/setProperty', { vm: this, element: this.element, name: 'docID', value })
+        this.$content.setProperty({ vm: this, element: this.element, name: 'docID', value })
       }
     },
     haveDocId: function () {
@@ -82,7 +82,7 @@ export default {
         return value ? value : 'preview'
       },
       set (value) {
-        this.$store.dispatch('contentLayout/setProperty', { vm: this, element: this.element, name: 'displayMode', value })
+        this.$content.setProperty({ vm: this, element: this.element, name: 'displayMode', value })
       }
     },
     protectedWidth: {
@@ -91,7 +91,7 @@ export default {
         return value
       },
       set (value) {
-        this.$store.dispatch('contentLayout/setProperty', { vm: this, element: this.element, name: 'width', value })
+        this.$content.setProperty({ vm: this, element: this.element, name: 'width', value })
       }
     },
     protectedHeight: {
@@ -100,7 +100,7 @@ export default {
         return value
       },
       set (value) {
-        this.$store.dispatch('contentLayout/setProperty', { vm: this, element: this.element, name: 'height', value })
+        this.$content.setProperty({ vm: this, element: this.element, name: 'height', value })
       }
     },
   },

@@ -106,7 +106,7 @@ export default {
   },
   computed: {
     refreshCounter () {
-      return this.$store.state.docservice.refreshCounter
+      return this.$docservice.store.state.refreshCounter
     },
 
     docID: function () {
@@ -115,13 +115,13 @@ export default {
     },
 
     replacementDocID: function ( ) {
-      console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$store.getters);
+      console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
       let docID = this.element['docID']
       if (docID) {
         // Use a preview version of the sheet
-        // console.log(`compute docID 1`, this.$store);
+        // console.log(`compute docID 1`, this.$docservice.store);
         let userID = null //ZZZZZZ
-        let replacementDocID = this.$store.getters['docservice/replacementDocID'](docID, userID)
+        let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
 
         console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
         return replacementDocID
@@ -130,11 +130,11 @@ export default {
     },
 
     currentlyScanning: function () {
-      return this.$store.state.docservice.currentlyScanning
+      return this.$docservice.store.state.currentlyScanning
     },
 
     scanMessage: function () {
-      return this.$store.state.docservice.scanMessage
+      return this.$docservice.store.state.scanMessage
     },
 
     width: function () {
@@ -304,17 +304,17 @@ export default {
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
-        this.$store.commit('contentLayout/setPropertyElement', { element })
+        this.$content.setPropertyElement({ element })
       }
     },
 
     doUpdate () {
       console.log(`doUpdate()`);
-      // this.$store.commit('docservice/refreshMutation', { })
+      // this.$docservice.store.commit('refreshMutation', { })
       let docID = this.element['docID']
       if (docID) {
         let vm = this
-        this.$store.dispatch('docservice/scanDocument', { vm, docID })
+        this.$docservice.store.dispatch('scanDocument', { vm, docID })
       }
     }
   }

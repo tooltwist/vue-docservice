@@ -55,10 +55,10 @@ export const actions = {
   scanDocument ({ commit, state }, { vm, docID }) {
     console.log(`In Action docservice/scanDocument(docID=${docID})`)
 
-    commit('scanState', { currentlyScanning: true, message: 'scanning...'})
+    commit('scanStateMutation', { currentlyScanning: true, message: 'scanning...'})
     vm.$docservice.scanDocument(vm, docID)
       .then(result => {
-        commit('scanState', { currentlyScanning: true, message: 'updating...'})
+        commit('scanStateMutation', { currentlyScanning: true, message: 'updating...'})
         console.log(`result of save:`, result)
 
         // Wait a while, to give the Google permissions time to propagate
@@ -69,14 +69,14 @@ export const actions = {
             let originalDocumentID = obj.originalDocumentID
             let replacementDocumentID = obj.replacementDocumentID
             let userID = null
-            commit('mapDocument', { originalDocumentID, replacementDocumentID, userID })
+            commit('mapDocumentMutation', { originalDocumentID, replacementDocumentID, userID })
           })
-          commit('scanState', { currentlyScanning: false })
+          commit('scanStateMutation', { currentlyScanning: false })
           commit('refreshMutation', { })
         }, 5000)
       })
       .catch(e => {
-        commit('scanState', { currentlyScanning: false, message: 'error' })
+        commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
         let desc = `Error scanning document`
         console.log(desc, e)
         //state.saveMsg = ERROR
@@ -105,8 +105,8 @@ export const mutations = {
     state.refreshCounter++
   },
 
-  mapDocument(state, { originalDocumentID, replacementDocumentID, userID }) {
-    console.log(`MUTATION mapDocument ${originalDocumentID} -> ${replacementDocumentID}`);
+  mapDocumentMutation(state, { originalDocumentID, replacementDocumentID, userID }) {
+    console.log(`MUTATION mapDocumentMutation ${originalDocumentID} -> ${replacementDocumentID}`);
     state.documentMap[originalDocumentID] = {
       docID: replacementDocumentID,
       userID: null
@@ -114,7 +114,7 @@ export const mutations = {
     console.log(`map is now`, state.documentMap);
   },
 
-  scanState(state, { currentlyScanning, message }) {
+  scanStateMutation(state, { currentlyScanning, message }) {
     state.currentlyScanning = currentlyScanning
     state.scanMessage = currentlyScanning ? message : ''
   }

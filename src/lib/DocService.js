@@ -10,10 +10,10 @@
 // Vue.use(Vuex)
 
 //import { install } from './install'
-import jwtDecode from 'jwt-decode'
+// import jwtDecode from 'jwt-decode'
 import axios from 'axios'
 import axiosError from './axiosError.js'
-import QueryString from 'query-string'
+// import QueryString from 'query-string'
 import { assert, inBrowser } from '../components/misc'
 
 // import { safeJson } from './hierarchy.js'
@@ -43,12 +43,12 @@ class Docservice {
 
   constructor (options) {
 
-      if (!options) {
-        console.error(`Docservice was passed null options, so will be disabled.`)
-        this.disabled = true
-        return
-      }
-      this.disabled = false
+    if (!options) {
+      console.error(`Docservice was passed null options, so will be disabled.`)
+      this.disabled = true
+      return
+    }
+    this.disabled = false
 
     console.log('&&& Docservice constructor', options)
     this.host = options.host ? options.host : 'api.docservice.io'
@@ -66,15 +66,8 @@ class Docservice {
       this.dsapikey = options.docservice.apikey
     }
 
-
-
     // Remember the options
     this.options = options
-
-    // Current user details
-    // this.user = null
-    // this.jwt = null
-    // this.fromCache = false
   }
 
   // init (app: any /* Vue component instance */) {
@@ -143,7 +136,22 @@ class Docservice {
         })
 
     })//- promise
-  }// scanDocument()
+  },// scanDocument()
+
+  refresh (state, { }) {
+    console.log('Docservice.refresh()')
+    this.store.commit('refreshMutation', { })
+  },
+
+  mapDocument(state, { originalDocumentID, replacementDocumentID, userID }) {
+    console.log('Docservice.mapDocument()')
+    this.store.commit('mapDocumentMutation', { originalDocumentID, replacementDocumentID, userID })
+  },
+
+  scanState(state, { currentlyScanning, message }) {
+    console.log('Docservice.scanState()')
+    this.store.commit('scanStateMutation', { currentlyScanning, message })
+  }
 
 }
 
@@ -152,7 +160,7 @@ class Docservice {
 
 Docservice.version = '__VERSION__'
 if (inBrowser && window.Vue) {
-  window.Vue.use(Docservice)
+  // window.Vue.use(Docservice)
 }
 
 export default Docservice

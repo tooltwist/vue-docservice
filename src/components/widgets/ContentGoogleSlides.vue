@@ -52,7 +52,7 @@ export default {
     }
   },
   watch: {
-    '$store.state.docservice.refreshCounter': function ( ) {
+    '$docservice.store.state.refreshCounter': function ( ) {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`);
     }
   },
@@ -67,9 +67,9 @@ export default {
     //   let value = this.element['docID']
     //   if (value) {
     //     // Use a preview version of the sheet
-    //     // console.log(`compute docID 1`, this.$store);
+    //     // console.log(`compute docID 1`, this.$docservice.store);
     //     let userID = null //ZZZZZZ
-    //     let replacementDocID = this.$store.getters['docservice/replacementDocID'](value, userID)
+    //     let replacementDocID = this.$docservice.store.getters['replacementDocID'](value, userID)
     //
     //     console.log(`replacementDocID: ${value} -> ${replacementDocID}`);
     //     return replacementDocID
@@ -78,7 +78,7 @@ export default {
     // },
 
     src: function ( ) {
-      console.log(`ContentGoogleSlides METHOD src`, this.$store.getters);
+      console.log(`ContentGoogleSlides METHOD src`, this.$docservice.store.getters);
 
       let docID = this.element['docID']
       if (docID) {
@@ -91,7 +91,7 @@ export default {
 
           // Get the substitute document ID we'll use for this user.
           let userID = null //ZZZZZZ
-          let replacementDocID = this.$store.getters['docservice/replacementDocID'](docID, userID)
+          let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
 
           console.error(`slides replacementDocID: ${docID} -> ${replacementDocID}`);
           let src = `https://docs.google.com/presentation/d/${replacementDocID}/preview?slide=id.p1`
@@ -134,7 +134,7 @@ export default {
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
-        this.$store.commit('contentLayout/setPropertyElement', { element })
+        this.$content.setPropertyElement({ element })
       }
     },
   }

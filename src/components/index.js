@@ -16,13 +16,13 @@ import ContentGoogleSheetsProps from './widgets/ContentGoogleSheetsProps.vue'
 import ContentGoogleDocs from './widgets/ContentGoogleDocs.vue'
 import ContentGoogleDocsProps from './widgets/ContentGoogleDocsProps.vue'
 
-let _Vue = null
+// let _Vue = null
 let _docservice = null
-let _store = null
+// let _store = null
 
 
 function install (Vue, options) {
-  console.log('Docservice.install()', options)
+  console.error('Docservice.install()', options)
   if (_docservice) {
     console.error("Vue.use(Docservice) has already been called.")
     return
@@ -30,16 +30,16 @@ function install (Vue, options) {
   let tmpvue = new Vue()
   let $content = tmpvue.$content
   if ( !$content) {
-    console.error("$content not defined. Please register ContentService before cslling Vue.use(Docservice).")
+    console.error("$content not defined. Please register ContentService before calling Vue.use(Docservice).")
     return
   }
 
-  _Vue = Vue
+  // _Vue = Vue
 
   // Create ourselves a Docservice Object
   _docservice = new Docservice(options)
 
-  const isDef = v => v !== undefined
+  // const isDef = v => v !== undefined
 
   // Vue.mixin adds an additional 'beforeCreate' function to it's
   // list of functions to be called when new Vue is created. We'll
@@ -165,48 +165,65 @@ function install (Vue, options) {
     }
   })
 
+  // $content.registerLayoutType(Vue, 'google-slides', 'content-google-slides', ContentGoogleSlides, ContentGoogleSlidesProps)
+  // $content.registerLayoutType(Vue, 'google-sheets', 'content-google-sheets', ContentGoogleSheets, ContentGoogleSheetsProps)
+  // $content.registerLayoutType(Vue, 'google-docs', 'content-google-docs', ContentGoogleDocs, ContentGoogleDocsProps)
+
+
+  // Initialise the store
+  Vue.use(Vuex)
+  let store = new Vuex.Store(DocserviceStore);
+  _docservice.store = store
+  console.log(`YARP docservice has a new store`, store);
+
   return _docservice
 } //- install()
 
-const obj = {
+const DocServiceLib = {
   install: install,
 }
 
-Object.defineProperty(obj, '_docservice', {
-  get: function() {
-      return _docservice
-  }
-});
+// Object.defineProperty(DocServiceLib, '_docservice', {
+//   get: function() {
+//       return _docservice
+//   }
+// });
+//
+// Object.defineProperty(DocServiceLib, 'storeDefinition', {
+//   get: function() {
+//     console.error('storeDefinition getter (in docservice)')
+//     return DocserviceStore
+//   }
+// });
+//
+// Object.defineProperty(DocServiceLib, 'docserviceStoreDefinition', {
+//   get: function() {
+//     console.error('docserviceStoreDefinition getter')
+//     return DocserviceStore
+//   }
+// });
+//
+// Object.defineProperty(DocServiceLib, 'store', {
+//   get: function() {
+//     if (_store) {
+//       return _store
+//     }
+//
+//     // Create a new store object
+//     _Vue.use(Vuex)
+//     _store = new Vuex.Store({
+//       modules: {
+//         docservice: DocserviceStore
+//       }
+//     });
+//     return _store;
+//   }
+// });
 
-Object.defineProperty(obj, 'storeDefinition', {
-  get: function() {
-    console.error('storeDefinition getter (in docservice)')
-    return DocserviceStore
-  }
-});
+export default DocServiceLib
 
-Object.defineProperty(obj, 'docserviceStoreDefinition', {
-  get: function() {
-    console.error('docserviceStoreDefinition getter')
-    return DocserviceStore
-  }
-});
 
-Object.defineProperty(obj, 'store', {
-  get: function() {
-    if (_store) {
-      return _store
-    }
-
-    // Create a new store object
-    _Vue.use(Vuex)
-    _store = new Vuex.Store({
-      modules: {
-        docservice: DocserviceStore
-      }
-    });
-    return _store;
-  }
-});
-
-export default obj
+// This is used when the npm package is included into an HTML page
+if (typeof window !== "undefined" && window.Vue) {
+  window.DocService = DocServiceLib
+}
