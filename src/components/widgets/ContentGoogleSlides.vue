@@ -5,7 +5,7 @@
     // View mode
     .container(v-if="pageEditMode==='view'")
       .my-slides-container
-        iframe(v-bind:src="src" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
+        iframe(v-bind:src="src" :docId="docId" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
 
     // Debug mode
     div(v-else-if="pageEditMode==='debug'", v-on:click.stop="select(element)")
@@ -100,6 +100,10 @@ export default {
         }
       }
       return ''
+    },
+
+    docId: function () {
+      return this.element.docID
     },
 
     haveDocId: function () {
