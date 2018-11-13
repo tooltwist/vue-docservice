@@ -1,30 +1,56 @@
-// initial state
-export const state = () => {
-  return {
 
-    // original-document-id -> { userId, docID }
-    documentMap: {
-      // '1ESlBwmpaCcKm7prdeCKJfVXn6hhddXn7Y6c3XLcYgis': {
-      //   docID: '161rGTvEyrk2XKUmHnf54Lh1RRntvG-q_E2s4hZrx_wA', userID: null
-      // },
-      '1sPBBmWIVvj-ytaAgfer0-j_3eHRXba6UMIo86Ov_ml4': {
-        docID: '1GtiF5fM72nok7uXCrOSX13h1DciyxY78bwoqYsIIf6Y', userID: null
-      },
-      '16qDqMZdIX7VY7Ka4n4k14PuVhlu5KBxv03WOeytFNl4': {
-        docID: '1RB5z_EHJhqdA35NFuE9Pf-LpMnwp5soEaPcS1urg8Aw', userID: null
-      }
-    },
+const initialState = {
+  // original-document-id -> { userId, docID }
+  documentMap: {
+    // '1ESlBwmpaCcKm7prdeCKJfVXn6hhddXn7Y6c3XLcYgis': {
+    //   docID: '161rGTvEyrk2XKUmHnf54Lh1RRntvG-q_E2s4hZrx_wA', userID: null
+    // },
+    // '1sPBBmWIVvj-ytaAgfer0-j_3eHRXba6UMIo86Ov_ml4': {
+    //   docID: '1GtiF5fM72nok7uXCrOSX13h1DciyxY78bwoqYsIIf6Y', userID: null
+    // },
+    // '16qDqMZdIX7VY7Ka4n4k14PuVhlu5KBxv03WOeytFNl4': {
+    //   docID: '1RB5z_EHJhqdA35NFuE9Pf-LpMnwp5soEaPcS1urg8Aw', userID: null
+    // }
+  },
 
-    // Refresh for some components can be activated by incrementing this counter.
-    refreshCounter: 1,
+  // Refresh for some components can be activated by incrementing this counter.
+  refreshCounter: 1,
 
-    // Set to true while we are waiting for the server to scan a document
-    // and generate derived documents.
-    currentlyScanning: false,
-    scanMessage: ''
-
-  }
+  // Set to true while we are waiting for the server to scan a document
+  // and generate derived documents.
+  currentlyScanning: false,
+  scanMessage: ''
 }
+
+export const state = () => (initialState)
+
+// initial state
+// export const state = () => {
+//   return {
+
+//     // original-document-id -> { userId, docID }
+//     documentMap: {
+//       // '1ESlBwmpaCcKm7prdeCKJfVXn6hhddXn7Y6c3XLcYgis': {
+//       //   docID: '161rGTvEyrk2XKUmHnf54Lh1RRntvG-q_E2s4hZrx_wA', userID: null
+//       // },
+//       // '1sPBBmWIVvj-ytaAgfer0-j_3eHRXba6UMIo86Ov_ml4': {
+//       //   docID: '1GtiF5fM72nok7uXCrOSX13h1DciyxY78bwoqYsIIf6Y', userID: null
+//       // },
+//       // '16qDqMZdIX7VY7Ka4n4k14PuVhlu5KBxv03WOeytFNl4': {
+//       //   docID: '1RB5z_EHJhqdA35NFuE9Pf-LpMnwp5soEaPcS1urg8Aw', userID: null
+//       // }
+//     },
+
+//     // Refresh for some components can be activated by incrementing this counter.
+//     refreshCounter: 1,
+
+//     // Set to true while we are waiting for the server to scan a document
+//     // and generate derived documents.
+//     currentlyScanning: false,
+//     scanMessage: ''
+
+//   }
+// }
 //})
 
 /********************************************
@@ -52,11 +78,11 @@ export const getters = {
  ********************************************/
 // see https://vuex.vuejs.org/guide/actions.html
 export const actions = {
-  scanDocument ({ commit, state }, { vm, docID }) {
+  scanDocument ({ commit, state }, { vm, docID, documentsToBeClone, userID, folderID, currentPageNode }) {
     console.log(`In Action docservice/scanDocument(docID=${docID})`)
 
     commit('scanState', { currentlyScanning: true, message: 'scanning...'})
-    vm.$docservice.scanDocument(vm, docID)
+    vm.$docservice.scanDocument(vm, docID, documentsToBeClone, userID, folderID, currentPageNode)
       .then(result => {
         commit('scanState', { currentlyScanning: true, message: 'updating...'})
         console.log(`result of save:`, result)
@@ -109,7 +135,7 @@ export const mutations = {
     console.log(`MUTATION mapDocument ${originalDocumentID} -> ${replacementDocumentID}`);
     state.documentMap[originalDocumentID] = {
       docID: replacementDocumentID,
-      userID: null
+      userID: userID
     }
     console.log(`map is now`, state.documentMap);
   },
@@ -117,7 +143,13 @@ export const mutations = {
   scanState(state, { currentlyScanning, message }) {
     state.currentlyScanning = currentlyScanning
     state.scanMessage = currentlyScanning ? message : ''
-  }
+  },
+
+  resetState(state, payload) {
+    for (let f in state) {
+      state[f] = initialState[f]
+    }
+ }
 
 
 }//- mutations

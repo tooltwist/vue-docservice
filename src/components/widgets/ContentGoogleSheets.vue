@@ -312,9 +312,13 @@ export default {
       console.log(`doUpdate()`);
       // this.$store.commit('docservice/refreshMutation', { })
       let docID = this.element['docID']
+      let documentsToBeClone = this.$store.state.document.currentDocuments
+      let userID = this.$store.state.user.currentUserModeDetails.id
+      let folderID = this.$store.state.user.currentUserModeDetails.folder_id
+      let currentPageNode = this.$store.state.contentLayout.anchor
       if (docID) {
         let vm = this
-        this.$store.dispatch('docservice/scanDocument', { vm, docID })
+        this.$store.dispatch('docservice/scanDocument', { vm, docID, documentsToBeClone, userID, folderID, currentPageNode })
       }
     }
   }
