@@ -11,7 +11,7 @@
       div(v-if="displayMode==='editable'")
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
-          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docId="docId", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
         .is-clearfix
@@ -19,7 +19,7 @@
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
         .my-sheets-container(:style="contentEditStyle")
-          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docId="docId", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
         .is-clearfix
@@ -30,7 +30,7 @@
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(:style="{float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, height:`${height}px`, zwidth:'1000px', backgroundColor:'yellow' }")
             div(:style="{overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, backgroundColor:'pink'}")
-              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
+              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docId="docId", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
           div(style="clear: both;")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
@@ -38,26 +38,26 @@
 
       // Preview unpublished document
       .my-sheets-container(v-else-if="displayMode==='preview'", :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" width="1000", height="500", scrolling="yes")
+        iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docId="docId", width="1000", height="500", scrolling="yes")
 
         // Preview unpublished document, without tabs
       .my-sheets-container(v-else-if="displayMode==='preview-notabs'", :style="contentEditStyle")
         // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
         div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
           div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+            iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docId="docId", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
         div(style="clear: both;")
 
       .my-sheets-container(v-else-if="displayMode==='published-notabs'", :style="contentEditStyle")
         // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
         div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
           div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+            iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docId="docId", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
         div(style="clear: both;")
 
 
       .my-sheets-container(v-else, :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`")
+        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docId="docId")
 
 
     // Debug mode
@@ -244,6 +244,10 @@ export default {
         }
       }
       return ``
+    },
+
+    docId: function () {
+      return this.element.docID
     },
 
     displayMode: function () {
