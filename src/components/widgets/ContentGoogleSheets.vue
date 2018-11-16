@@ -319,7 +319,7 @@ export default {
       let documentsToBeClone = this.$store.state.document.currentDocuments
       let userID = this.$store.state.user.currentUserModeDetails.id
       let folderID = this.$store.state.user.currentUserModeDetails.folder_id
-      let currentPageNode = this.$store.state.contentLayout.anchor
+      let currentPageNode = this.$router.history.current.hash
       if (docID) {
         let vm = this
         this.$docservice.store.dispatch('scanDocument', { vm, docID, documentsToBeClone, userID, folderID, currentPageNode })
