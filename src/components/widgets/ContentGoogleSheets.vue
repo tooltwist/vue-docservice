@@ -257,9 +257,9 @@ export default {
       return ``
     },
 
-    docID: function () {
-      return this.element.docID
-    },
+    //docID: function () {
+    //  return this.element.docID
+    //},
 
     displayMode: function () {
       let mode = this.element['displayMode']

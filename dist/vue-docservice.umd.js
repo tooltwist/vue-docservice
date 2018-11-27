@@ -1633,6 +1633,17 @@ exports.RETURN = RETURN;
 
 /***/ }),
 
+/***/ "4bf5":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7c3cba0f_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("b43b");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7c3cba0f_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7c3cba0f_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7c3cba0f_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
 /***/ "4bf8":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2133,17 +2144,6 @@ var store = global[SHARED] || (global[SHARED] = {});
   copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
 });
 
-
-/***/ }),
-
-/***/ "5b07":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7b065558_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("9810");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7b065558_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7b065558_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSheets_vue_vue_type_style_index_0_id_7b065558_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
@@ -2752,13 +2752,6 @@ module.exports = CancelToken;
 
 /***/ }),
 
-/***/ "9810":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
-
-/***/ }),
-
 /***/ "9b43":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2999,6 +2992,24 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 /***/ }),
 
+/***/ "ae1f":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_047daa81_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("cb29");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_047daa81_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_047daa81_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
+/* unused harmony reexport * */
+ /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_047daa81_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "b43b":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "b50d":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3222,13 +3233,6 @@ module.exports = function (it) {
   return it;
 };
 
-
-/***/ }),
-
-/***/ "bff0":
-/***/ (function(module, exports, __webpack_require__) {
-
-// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -3750,6 +3754,13 @@ addToUnscopables('keys');
 addToUnscopables('values');
 addToUnscopables('entries');
 
+
+/***/ }),
+
+/***/ "cb29":
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ }),
 
@@ -5395,7 +5406,7 @@ function () {
 
   }, {
     key: "scanDocument",
-    value: function scanDocument(vm, documentId, documentsToBeClone, userID, folderID, currentPageNode) {
+    value: function scanDocument(vm, documentId, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID) {
       var _this = this;
 
       console.log("Docservice.js:scanDocument()", documentId);
@@ -5410,11 +5421,13 @@ function () {
         var url = "".concat(_this.endpoint(), "/scanDocument");
         console.log("url is ".concat(url));
         var params = {
-          document_id: documentId,
-          documents_to_be_clone: documentsToBeClone,
-          user_id: userID,
-          folder_id: folderID,
-          current_page_node: currentPageNode
+          documentID: documentId,
+          documentsToBeClone: documentsToBeClone,
+          userID: userID,
+          folderID: folderID,
+          currentPageNode: currentPageNode,
+          accountingFirmID: accountingFirmID,
+          businessEntityID: businessEntityID
         };
         axios_default()({
           method: 'post',
@@ -5571,13 +5584,15 @@ var actions = {
         documentsToBeClone = _ref2.documentsToBeClone,
         userID = _ref2.userID,
         folderID = _ref2.folderID,
-        currentPageNode = _ref2.currentPageNode;
+        currentPageNode = _ref2.currentPageNode,
+        accountingFirmID = _ref2.accountingFirmID,
+        businessEntityID = _ref2.businessEntityID;
     console.log("In Action docservice/scanDocument(docID=".concat(docID, ")"));
     commit('scanStateMutation', {
       currentlyScanning: true,
       message: 'scanning...'
     });
-    vm.$docservice.scanDocument(vm, docID, documentsToBeClone, userID, folderID, currentPageNode).then(function (result) {
+    vm.$docservice.scanDocument(vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID).then(function (result) {
       commit('scanStateMutation', {
         currentlyScanning: true,
         message: 'updating...'
@@ -5601,7 +5616,9 @@ var actions = {
           currentlyScanning: false
         });
         commit('refreshMutation', {});
-      }, 5000);
+      }, 5000); // setTimeout(() => {
+      //   window.location.reload()
+      // }, 10000);
     }).catch(function (e) {
       commit('scanStateMutation', {
         currentlyScanning: false,
@@ -5635,10 +5652,12 @@ var mutations = {
   mapDocumentMutation: function mapDocumentMutation(state, _ref4) {
     var originalDocumentID = _ref4.originalDocumentID,
         replacementDocumentID = _ref4.replacementDocumentID,
+        predecessorDocumentID = _ref4.predecessorDocumentID,
         userID = _ref4.userID;
     console.log("MUTATION mapDocumentMutation ".concat(originalDocumentID, " -> ").concat(replacementDocumentID));
     state.documentMap[originalDocumentID] = {
       docID: replacementDocumentID,
+      predecessorDocumentID: predecessorDocumentID,
       userID: userID
     };
     console.log("map is now", state.documentMap);
@@ -5664,28 +5683,13 @@ var namespaced = true;
   getters: getters,
   actions: actions
 });
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=7ea08067&scoped=true&lang=pug&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-slides",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container"},[_c('iframe',{attrs:{"src":_vm.src,"docId":_vm.docId,"frameborder":"0","zwidth":"640","zheight":"389","allowfullscreen":"true","mozallowfullscreen":"true","webkitallowfullscreen":"true"}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google slides")],1),_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])])}
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=047daa81&scoped=true&lang=pug&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-slides",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container"},[_c('iframe',{attrs:{"src":_vm.src,"docId":_vm.docId,"mimeType":_vm.mimeType,"frameborder":"0","zwidth":"640","zheight":"389","allowfullscreen":"true","mozallowfullscreen":"true","webkitallowfullscreen":"true"}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google slides")],1),_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-slides-container my-dummy-iframe"},[_c('div',{staticClass:"valign"},[_vm._v("Google Slides"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])])}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=7ea08067&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=template&id=047daa81&scoped=true&lang=pug&
 
-// CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/builtin/es6/defineProperty.js
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.string.starts-with.js
 var es6_string_starts_with = __webpack_require__("f559");
 
@@ -5974,10 +5978,6 @@ var es6_string_anchor = __webpack_require__("8449");
 });
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSlides.vue?vue&type=script&lang=js&
 
-
-
-var _name$props$mixins$da;
-
 //
 //
 //
@@ -6018,22 +6018,28 @@ var _name$props$mixins$da;
 //
 
 
-/* harmony default export */ var ContentGoogleSlidesvue_type_script_lang_js_ = (_name$props$mixins$da = {
+/* harmony default export */ var ContentGoogleSlidesvue_type_script_lang_js_ = ({
   name: 'content-google-slides',
   props: {
     element: Object
   },
   mixins: [ContentMixins, CutAndPasteMixins],
   data: function data() {
-    return {//docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+    return {
+      //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+      src: ''
     };
   },
   watch: {
-    '$docservice.store.state.refreshCounter': function $docserviceStoreStateRefreshCounter() {
+    refreshCounter: function refreshCounter() {
       console.log("^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER");
+      this.funcSrc();
     }
   },
   computed: {
+    refreshCounter: function refreshCounter() {
+      return this.$docservice.store.state.refreshCounter;
+    },
     // docID: function () {
     //   let value = this.element['docID']
     //   return value ? value : ''
@@ -6052,34 +6058,11 @@ var _name$props$mixins$da;
     //   }
     //   return ''
     // },
-    src: function src() {
-      console.log("ContentGoogleSlides METHOD src", this.$docservice.store.getters);
-      var docID = this.element['docID'];
-
-      if (docID) {
-        if (docID.startsWith('2PACX-')) {
-          // Use the published version of the file
-          var src = "https://docs.google.com/a/tooltwist.com/presentation/d/e/".concat(this.element.docID, "/embed?start=false&loop=false&delayms=3000");
-          console.log("published url=".concat(src));
-          return src;
-        } else {
-          // Get the substitute document ID we'll use for this user.
-          var userID = null; //ZZZZZZ
-
-          var replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID);
-          console.error("slides replacementDocID: ".concat(docID, " -> ").concat(replacementDocID));
-
-          var _src = "https://docs.google.com/presentation/d/".concat(replacementDocID, "/preview?slide=id.p1");
-
-          console.log("unpublished url=".concat(_src));
-          return _src;
-        }
-      }
-
-      return '';
-    },
     docId: function docId() {
       return this.element.docID;
+    },
+    mimeType: function mimeType() {
+      return 'application/vnd.google-apps.presentation';
     },
     haveDocId: function haveDocId() {
       var id = this.element['docID'];
@@ -6103,31 +6086,62 @@ var _name$props$mixins$da;
       copyStyle(this.element, style, 'padding-right');
       return style;
     }
-  }
-}, _defineProperty(_name$props$mixins$da, "watch", {
-  refreshCounter: function refreshCounter(oldvalue, newvalue) {
-    console.log("Slides refreshCounter changed from ".concat(oldvalue, " to ").concat(newvalue, "."));
-  }
-}), _defineProperty(_name$props$mixins$da, "methods", {
-  select: function select(element) {
-    console.log("select()", element);
+  },
+  // watch: {
+  //   refreshCounter (oldvalue, newvalue) {
+  //     console.log(`Slides refreshCounter changed from ${oldvalue} to ${newvalue}.`);
+  //   }
+  // },
+  methods: {
+    select: function select(element) {
+      console.log("select()", element);
 
-    if (this.pageEditMode != 'view') {
-      this.$content.setPropertyElement({
-        element: element
-      });
+      if (this.pageEditMode != 'view') {
+        this.$content.setPropertyElement({
+          element: element
+        });
+      }
+    },
+    funcSrc: function funcSrc() {
+      console.log("ContentGoogleSlides METHOD src", this.$docservice.store.getters);
+      var docID = this.element['docID'];
+
+      if (docID) {
+        if (docID.startsWith('2PACX-')) {
+          // Use the published version of the file
+          var src = "https://docs.google.com/a/tooltwist.com/presentation/d/e/".concat(this.element.docID, "/embed?start=false&loop=false&delayms=3000");
+          console.log("published url=".concat(src)); // return src
+
+          this.src = src;
+        } else {
+          // Get the substitute document ID we'll use for this user.
+          var userID = null; //ZZZZZZ
+
+          var replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID);
+          console.error("slides replacementDocID: ".concat(docID, " -> ").concat(replacementDocID));
+
+          var _src = "https://docs.google.com/presentation/d/".concat(replacementDocID, "/preview?slide=id.p1");
+
+          console.log("unpublished url=".concat(_src)); // return src
+
+          this.src = _src;
+        }
+      }
+
+      return '';
     }
   }
-}), _name$props$mixins$da);
-/* function copyStyle(from, to, name) {
-  if (from[name]) {
-    to[name] = from[name]
-  }
-} */
+  /* function copyStyle(from, to, name) {
+    if (from[name]) {
+      to[name] = from[name]
+    }
+  } */
+
+});
 // CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=script&lang=js&
  /* harmony default export */ var widgets_ContentGoogleSlidesvue_type_script_lang_js_ = (ContentGoogleSlidesvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=style&index=0&id=7ea08067&lang=scss&scoped=true&
-var ContentGoogleSlidesvue_type_style_index_0_id_7ea08067_lang_scss_scoped_true_ = __webpack_require__("ff46");
+// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSlides.vue?vue&type=style&index=0&id=047daa81&lang=scss&scoped=true&
+var ContentGoogleSlidesvue_type_style_index_0_id_047daa81_lang_scss_scoped_true_ = __webpack_require__("ae1f");
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
@@ -6239,7 +6253,7 @@ var component = normalizeComponent(
   staticRenderFns,
   false,
   null,
-  "7ea08067",
+  "047daa81",
   null
   
 )
@@ -6374,12 +6388,12 @@ var ContentGoogleSlidesProps_component = normalizeComponent(
 
 ContentGoogleSlidesProps_component.options.__file = "ContentGoogleSlidesProps.vue"
 /* harmony default export */ var ContentGoogleSlidesProps = (ContentGoogleSlidesProps_component.exports);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSheets.vue?vue&type=template&id=7b065558&scoped=true&lang=pug&
-var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-sheets",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_vm._v("mode is "),_c('b',[_vm._v(_vm._s(_vm.displayMode))]),_vm._v(" "+_vm._s(_vm.modeDescription)+" - "+_vm._s(_vm.refreshCounter)),(_vm.displayMode==='editable')?_c('div',[_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=false&headers=false"),"docId":_vm.docId,"width":"1000","height":"500","frameborder":"solid 1px red","scrolling":"yes"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='editable-nomenus')?_c('div',[_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal"),"docId":_vm.docId,"width":"1000","height":"500","frameborder":"solid 1px red","scrolling":"yes"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='editable-dataonly')?_c('div',[_c('div',{staticClass:"my-sheets-container"},[_c('div',{style:({float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:(_vm.width + "px"), height:(_vm.height + "px"), zwidth:'1000px', backgroundColor:'yellow' })},[_c('div',{style:({overflow:'hidden', margin:'0px auto', maxWidth:(_vm.width + "px"), backgroundColor:'pink'})},[_c('iframe',{style:({ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:(_vm.width + "px"), overflow:'hidden' }),attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal"),"docId":_vm.docId,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='preview')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/preview?gid=0&chrome=false&single=true&widget=false&headers=false"),"docId":_vm.docId,"width":"1000","height":"500","scrolling":"yes"}})]):(_vm.displayMode==='preview-notabs')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('div',{staticStyle:{"float":"left","border":"0px solid #f3f3f3","overflow":"hidden","margin":"0px auto","max-width":"1000px","height":"500px"}},[_c('div',{staticStyle:{"overflow":"hidden","margin":"0px auto","max-width":"1000px"}},[_c('iframe',{staticStyle:{"margin-right":"-10px","margin-left":"-45px","height":"650px","margin-top":"-23px","width":"1010px","overflow":"hidden","border":"none"},attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/preview?gid=0&chrome=false&single=true&widget=false&headers=false"),"docId":_vm.docId,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]):(_vm.displayMode==='published-notabs')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('div',{staticStyle:{"float":"left","border":"0px solid #f3f3f3","overflow":"hidden","margin":"0px auto","max-width":"1000px","height":"500px"}},[_c('div',{staticStyle:{"overflow":"hidden","margin":"0px auto","max-width":"1000px"}},[_c('iframe',{staticStyle:{"margin-right":"-10px","margin-left":"0px","height":"650px","margin-top":"-29px","width":"1010px","overflow":"hidden","border":"none"},attrs:{"src":("https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/" + (_vm.element.docID) + "/pubhtml?widget=true&amp;headers=false"),"docId":_vm.docId,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]):_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/" + (_vm.element.docID) + "/pubhtml?widget=true&amp;headers=false"),"docId":_vm.docId}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google sheets "+_vm._s(_vm.width))],1),_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-sheets-container my-dummy-iframe",style:(_vm.contentEditStyle)},[_c('div',{staticClass:"valign"},[_vm._v("Google Sheets"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-sheets-container my-dummy-iframe",style:(_vm.contentEditStyle)},[_c('div',{staticClass:"valign"},[_vm._v("Google Sheets"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])])}
-var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"2867f158-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/pug-plain-loader!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSheets.vue?vue&type=template&id=7c3cba0f&scoped=true&lang=pug&
+var ContentGoogleSheetsvue_type_template_id_7c3cba0f_scoped_true_lang_pug_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"c-google-sheets",class:[ _vm.editModeClass, (_vm.pageEditMode=='debug') ? 'tt-container-outline' : '']},[(_vm.pageEditMode==='view')?_c('div',{staticClass:"container"},[_vm._v("mode is "),_c('b',[_vm._v(_vm._s(_vm.displayMode))]),_vm._v(" "+_vm._s(_vm.modeDescription)+" - "+_vm._s(_vm.refreshCounter)),(_vm.displayMode==='editable')?_c('div',[_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=false&headers=false"),"docID":_vm.docID,"mimeType":_vm.mimeType,"width":"1000","height":"500","frameborder":"solid 1px red","scrolling":"yes"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='editable-nomenus')?_c('div',[_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal"),"docID":_vm.docID,"mimeType":_vm.mimeType,"width":"1000","height":"500","frameborder":"solid 1px red","scrolling":"yes"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='editable-dataonly')?_c('div',[_c('div',{staticClass:"my-sheets-container"},[_c('div',{style:({float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:(_vm.width + "px"), height:(_vm.height + "px"), zwidth:'1000px', backgroundColor:'yellow' })},[_c('div',{style:({overflow:'hidden', margin:'0px auto', maxWidth:(_vm.width + "px"), backgroundColor:'pink'})},[_c('iframe',{style:({ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:(_vm.width + "px"), overflow:'hidden' }),attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal"),"docID":_vm.docID,"mimeType":_vm.mimeType,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]),_c('button',{staticClass:"button is-primary",class:{ 'is-loading': _vm.currentlyScanning },on:{"click":_vm.doUpdate}},[_vm._v("Update")]),_c('div',{staticClass:"scanMessage"},[_vm._v(_vm._s(_vm.scanMessage))]),_c('div',{staticClass:"is-clearfix"})]):(_vm.displayMode==='preview')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/preview?gid=0&chrome=false&single=true&widget=false&headers=false"),"docID":_vm.docID,"mimeType":_vm.mimeType,"width":"1000","height":"500","scrolling":"yes"}})]):(_vm.displayMode==='preview-notabs')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('div',{staticStyle:{"float":"left","border":"0px solid #f3f3f3","overflow":"hidden","margin":"0px auto","max-width":"1000px","height":"500px"}},[_c('div',{staticStyle:{"overflow":"hidden","margin":"0px auto","max-width":"1000px"}},[_c('iframe',{staticStyle:{"margin-right":"-10px","margin-left":"-45px","height":"650px","margin-top":"-23px","width":"1010px","overflow":"hidden","border":"none"},attrs:{"src":("https://docs.google.com/spreadsheets/d/" + _vm.replacementDocID + "/preview?gid=0&chrome=false&single=true&widget=false&headers=false"),"docID":_vm.docID,"mimeType":_vm.mimeType,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]):(_vm.displayMode==='published-notabs')?_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('div',{staticStyle:{"float":"left","border":"0px solid #f3f3f3","overflow":"hidden","margin":"0px auto","max-width":"1000px","height":"500px"}},[_c('div',{staticStyle:{"overflow":"hidden","margin":"0px auto","max-width":"1000px"}},[_c('iframe',{staticStyle:{"margin-right":"-10px","margin-left":"0px","height":"650px","margin-top":"-29px","width":"1010px","overflow":"hidden","border":"none"},attrs:{"src":("https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/" + (_vm.element.docID) + "/pubhtml?widget=true&amp;headers=false"),"docID":_vm.docID,"mimeType":_vm.mimeType,"scrolling":"no"}})])]),_c('div',{staticStyle:{"clear":"both"}})]):_c('div',{staticClass:"my-sheets-container",style:(_vm.contentEditStyle)},[_c('iframe',{attrs:{"src":("https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/" + (_vm.element.docID) + "/pubhtml?widget=true&amp;headers=false"),"mimeType":_vm.mimeType,"docID":_vm.docID}})])]):(_vm.pageEditMode==='debug')?_c('div',{on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"c-layout-mode-heading"},[_c('edit-bar-icons',{attrs:{"element":_vm.element}}),_vm._v("google sheets "+_vm._s(_vm.width))],1),_c('div',{staticClass:"container"},[_c('div',{staticClass:"my-sheets-container my-dummy-iframe",style:(_vm.contentEditStyle)},[_c('div',{staticClass:"valign"},[_vm._v("Google Sheets"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])]):_c('div',{staticClass:"container",on:{"click":function($event){$event.stopPropagation();_vm.select(_vm.element)}}},[_c('div',{staticClass:"my-sheets-container my-dummy-iframe",style:(_vm.contentEditStyle)},[_c('div',{staticClass:"valign"},[_vm._v("Google Sheets"),_c('br'),(_vm.haveDocId)?_c('div',{staticClass:"modeDescription"},[_vm._v(_vm._s(_vm.modeDescription))]):_c('div',{staticClass:"modeError"},[_c('br'),_vm._v("Document not specified")])])])])])}
+var ContentGoogleSheetsvue_type_template_id_7c3cba0f_scoped_true_lang_pug_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSheets.vue?vue&type=template&id=7b065558&scoped=true&lang=pug&
+// CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSheets.vue?vue&type=template&id=7c3cba0f&scoped=true&lang=pug&
 
 // CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/widgets/ContentGoogleSheets.vue?vue&type=script&lang=js&
 
@@ -6484,8 +6498,16 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
   },
   mixins: [ContentMixins, CutAndPasteMixins],
   data: function data() {
-    return {//docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+    return {
+      //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+      replacementDocID: ''
     };
+  },
+  watch: {
+    refreshCounter: function refreshCounter() {
+      console.log("^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER");
+      this.funcSrc();
+    }
   },
   computed: {
     refreshCounter: function refreshCounter() {
@@ -6495,22 +6517,22 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
       var value = this.element['docID'];
       return value ? value : '';
     },
-    replacementDocID: function replacementDocID() {
-      console.log("ContentGoogleSheets METHOD replacementDocumentID", this.$docservice.store.getters);
-      var docID = this.element['docID'];
-
-      if (docID) {
-        // Use a preview version of the sheet
-        // console.log(`compute docID 1`, this.$docservice.store);
-        var userID = null; //ZZZZZZ
-
-        var replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID);
-        console.log("replacementDocID: ".concat(docID, " -> ").concat(replacementDocID));
-        return replacementDocID;
-      }
-
-      return '';
+    mimeType: function mimeType() {
+      return 'application/vnd.google-apps.spreadsheet';
     },
+    // replacementDocID: function ( ) {
+    //   console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
+    //   let docID = this.element['docID']
+    //   if (docID) {
+    //     // Use a preview version of the sheet
+    //     // console.log(`compute docID 1`, this.$docservice.store);
+    //     let userID = null //ZZZZZZ
+    //     let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
+    //     console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
+    //     return replacementDocID
+    //   }
+    //   return ''
+    // },
     currentlyScanning: function currentlyScanning() {
       return this.$docservice.store.state.currentlyScanning;
     },
@@ -6629,9 +6651,9 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
 
       return "";
     },
-    docId: function docId() {
-      return this.element.docID;
-    },
+    //docID: function () {
+    //  return this.element.docID
+    //},
     displayMode: function displayMode() {
       var mode = this.element['displayMode'];
 
@@ -6708,13 +6730,106 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
       }
     },
     doUpdate: function doUpdate() {
+      var _this = this;
+
       console.log("doUpdate()"); // this.$docservice.store.commit('refreshMutation', { })
 
       var docID = this.element['docID'];
-      var documentsToBeClone = this.$store.state.document.currentDocuments;
       var userID = this.$store.state.user.currentUserModeDetails.id;
+      var currentPageNode = this.$router.history.current.hash;
       var folderID = this.$store.state.user.currentUserModeDetails.folder_id;
-      var currentPageNode = this.$store.state.contentLayout.anchor;
+
+      if (this.$store.state.user.currentUserModeDetails.business_entity_folder_id) {
+        folderID = this.$store.state.user.currentUserModeDetails.business_entity_folder_id;
+      }
+
+      var masterDocuments = this.$store.state.document.currentDocuments;
+      var documentMap = this.$docservice.store.state.documentMap;
+      var accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id;
+      var businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id;
+      var documentsToBeClone = [];
+      /*
+      *   If current user is advisor, firm manager and client
+      */
+
+      var currentMode = this.$store.state.user.userMode.currentMode;
+
+      if (currentMode !== 'mentor' && currentMode !== 'coach') {
+        masterDocuments.forEach(function (masterDocument) {
+          var jsonData = {};
+          var currentClonedDoc = documentMap[masterDocument.docID];
+
+          if (currentClonedDoc) {
+            // current cloned document
+            if (masterDocument.mimeType === _this.mimeType) {
+              // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID;
+
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.masterDocID = currentClonedDoc.predecessorDocumentID;
+              }
+
+              jsonData.mimeType = masterDocument.mimeType;
+              documentsToBeClone.push(jsonData);
+            } else {
+              jsonData.docID = currentClonedDoc.docID;
+
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.docID = currentClonedDoc.predecessorDocumentID;
+              }
+
+              jsonData.mimeType = masterDocument.mimeType;
+              documentsToBeClone.push(jsonData);
+            }
+          }
+        });
+      } else {
+        /*
+        *   If current user is mentor and coach
+        *   Iterate masterDocuments data and find the current spreadsheet that have been clicked
+        *   and replace it's master document ID into current document ID
+        */
+        masterDocuments.forEach(function (masterDocument) {
+          var jsonData = {};
+          var currentClonedDoc = documentMap[masterDocument.docID];
+
+          if (currentClonedDoc) {
+            // current cloned document
+            if (masterDocument.docID === docID && masterDocument.mimeType === _this.mimeType) {
+              // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID;
+              jsonData.masterDocID = masterDocument.docID;
+              jsonData.mimeType = masterDocument.mimeType;
+              documentsToBeClone.push(jsonData);
+            } else {
+              if (masterDocument.mimeType !== _this.mimeType) {
+                // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+                jsonData.docID = masterDocument.docID;
+                jsonData.mimeType = masterDocument.mimeType;
+                documentsToBeClone.push(jsonData);
+              }
+            }
+          } else {
+            // if there is no cloned files
+            jsonData.docID = masterDocument.docID;
+            jsonData.mimeType = masterDocument.mimeType;
+            documentsToBeClone.push(jsonData);
+          }
+        });
+      } // console.log(documentsToBeClone)
+      // return
+
+      /*
+      *   Find current clicked spreadsheet and replace it with cloned spreadsheet document
+      *   params: docID
+      */
+
+
+      var currentSpreadsheetDocID = documentMap[docID];
+
+      if (currentSpreadsheetDocID) {
+        docID = currentSpreadsheetDocID.docID;
+      }
 
       if (docID) {
         var vm = this;
@@ -6724,9 +6839,28 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
           documentsToBeClone: documentsToBeClone,
           userID: userID,
           folderID: folderID,
-          currentPageNode: currentPageNode
+          currentPageNode: currentPageNode,
+          accountingFirmID: accountingFirmID,
+          businessEntityID: businessEntityID
         });
       }
+    },
+    funcSrc: function funcSrc() {
+      console.log("ContentGoogleSheets METHOD replacementDocumentID", this.$docservice.store.getters);
+      var docID = this.element['docID'];
+
+      if (docID) {
+        // Use a preview version of the sheet
+        // console.log(`compute docID 1`, this.$docservice.store);
+        var userID = null; //ZZZZZZ
+
+        var replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID);
+        console.log("replacementDocID: ".concat(docID, " -> ").concat(replacementDocID)); // return replacementDocID
+
+        this.replacementDocID = replacementDocID;
+      }
+
+      return '';
     }
   }
   /* function copyStyle(from, to, name) {
@@ -6738,8 +6872,8 @@ var ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_static
 });
 // CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSheets.vue?vue&type=script&lang=js&
  /* harmony default export */ var widgets_ContentGoogleSheetsvue_type_script_lang_js_ = (ContentGoogleSheetsvue_type_script_lang_js_); 
-// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSheets.vue?vue&type=style&index=0&id=7b065558&lang=scss&scoped=true&
-var ContentGoogleSheetsvue_type_style_index_0_id_7b065558_lang_scss_scoped_true_ = __webpack_require__("5b07");
+// EXTERNAL MODULE: ./src/components/widgets/ContentGoogleSheets.vue?vue&type=style&index=0&id=7c3cba0f&lang=scss&scoped=true&
+var ContentGoogleSheetsvue_type_style_index_0_id_7c3cba0f_lang_scss_scoped_true_ = __webpack_require__("4bf5");
 
 // CONCATENATED MODULE: ./src/components/widgets/ContentGoogleSheets.vue
 
@@ -6752,11 +6886,11 @@ var ContentGoogleSheetsvue_type_style_index_0_id_7b065558_lang_scss_scoped_true_
 
 var ContentGoogleSheets_component = normalizeComponent(
   widgets_ContentGoogleSheetsvue_type_script_lang_js_,
-  ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_render,
-  ContentGoogleSheetsvue_type_template_id_7b065558_scoped_true_lang_pug_staticRenderFns,
+  ContentGoogleSheetsvue_type_template_id_7c3cba0f_scoped_true_lang_pug_render,
+  ContentGoogleSheetsvue_type_template_id_7c3cba0f_scoped_true_lang_pug_staticRenderFns,
   false,
   null,
-  "7b065558",
+  "7c3cba0f",
   null
   
 )
@@ -7347,17 +7481,6 @@ if (typeof window !== "undefined" && window.Vue) {
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (components);
 
 
-
-/***/ }),
-
-/***/ "ff46":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_7ea08067_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("bff0");
-/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_7ea08067_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_7ea08067_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
-/* unused harmony reexport * */
- /* unused harmony default export */ var _unused_webpack_default_export = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_node_modules_css_loader_index_js_ref_8_oneOf_1_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_lib_index_js_ref_8_oneOf_1_2_node_modules_sass_loader_lib_loader_js_ref_8_oneOf_1_3_node_modules_cache_loader_dist_cjs_js_ref_0_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ContentGoogleSlides_vue_vue_type_style_index_0_id_7ea08067_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ })
 
