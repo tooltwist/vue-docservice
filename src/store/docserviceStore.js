@@ -78,11 +78,11 @@ export const getters = {
  ********************************************/
 // see https://vuex.vuejs.org/guide/actions.html
 export const actions = {
-  scanDocument ({ commit, state }, { vm, docID, documentsToBeClone, userID, folderID, currentPageNode }) {
+  scanDocument ({ commit, state }, { vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID }) {
     console.log(`In Action docservice/scanDocument(docID=${docID})`)
 
     commit('scanStateMutation', { currentlyScanning: true, message: 'scanning...'})
-    vm.$docservice.scanDocument(vm, docID, documentsToBeClone, userID, folderID, currentPageNode)
+    vm.$docservice.scanDocument(vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID)
       .then(result => {
         commit('scanStateMutation', { currentlyScanning: true, message: 'updating...'})
         console.log(`result of save:`, result)
@@ -100,6 +100,9 @@ export const actions = {
           commit('scanStateMutation', { currentlyScanning: false })
           commit('refreshMutation', { })
         }, 5000)
+        // setTimeout(() => {
+        //   window.location.reload()
+        // }, 10000);
       })
       .catch(e => {
         commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
@@ -131,10 +134,11 @@ export const mutations = {
     state.refreshCounter++
   },
 
-  mapDocumentMutation(state, { originalDocumentID, replacementDocumentID, userID }) {
+  mapDocumentMutation(state, { originalDocumentID, replacementDocumentID, predecessorDocumentID, userID }) {
     console.log(`MUTATION mapDocumentMutation ${originalDocumentID} -> ${replacementDocumentID}`);
     state.documentMap[originalDocumentID] = {
       docID: replacementDocumentID,
+      predecessorDocumentID: predecessorDocumentID,
       userID: userID
     }
     console.log(`map is now`, state.documentMap);

@@ -11,7 +11,7 @@
       div(v-if="displayMode==='editable'")
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
-          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docId="docId", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
         .is-clearfix
@@ -19,7 +19,7 @@
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
         .my-sheets-container(:style="contentEditStyle")
-          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docId="docId", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
         .is-clearfix
@@ -30,7 +30,7 @@
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(:style="{float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, height:`${height}px`, zwidth:'1000px', backgroundColor:'yellow' }")
             div(:style="{overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, backgroundColor:'pink'}")
-              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docId="docId", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
+              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:'571px', marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
           div(style="clear: both;")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
@@ -38,26 +38,26 @@
 
       // Preview unpublished document
       .my-sheets-container(v-else-if="displayMode==='preview'", :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docId="docId", width="1000", height="500", scrolling="yes")
+        iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
 
         // Preview unpublished document, without tabs
       .my-sheets-container(v-else-if="displayMode==='preview-notabs'", :style="contentEditStyle")
         // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
         div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
           div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docId="docId", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+            iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
         div(style="clear: both;")
 
       .my-sheets-container(v-else-if="displayMode==='published-notabs'", :style="contentEditStyle")
         // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
         div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
           div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docId="docId", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+            iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
         div(style="clear: both;")
 
 
       .my-sheets-container(v-else, :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docId="docId")
+        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :mimeType="mimeType", :docID="docID")
 
 
     // Debug mode
@@ -101,7 +101,14 @@ export default {
   mixins: [ ContentMixins, CutAndPasteMixins ],
   data: function () {
     return {
-      //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+      //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+      replacementDocID: ''
+    }
+  },
+  watch: {
+    refreshCounter: function ( ) {
+      console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
+      this.funcSrc()
     }
   },
   computed: {
@@ -114,20 +121,24 @@ export default {
       return value ? value : ''
     },
 
-    replacementDocID: function ( ) {
-      console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
-      let docID = this.element['docID']
-      if (docID) {
-        // Use a preview version of the sheet
-        // console.log(`compute docID 1`, this.$docservice.store);
-        let userID = null //ZZZZZZ
-        let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
-
-        console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
-        return replacementDocID
-      }
-      return ''
+    mimeType: function () {
+      return 'application/vnd.google-apps.spreadsheet'
     },
+
+    // replacementDocID: function ( ) {
+    //   console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
+    //   let docID = this.element['docID']
+    //   if (docID) {
+    //     // Use a preview version of the sheet
+    //     // console.log(`compute docID 1`, this.$docservice.store);
+    //     let userID = null //ZZZZZZ
+    //     let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
+
+    //     console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
+    //     return replacementDocID
+    //   }
+    //   return ''
+    // },
 
     currentlyScanning: function () {
       return this.$docservice.store.state.currentlyScanning
@@ -246,7 +257,7 @@ export default {
       return ``
     },
 
-    docId: function () {
+    docID: function () {
       return this.element.docID
     },
 
@@ -316,15 +327,107 @@ export default {
       console.log(`doUpdate()`);
       // this.$docservice.store.commit('refreshMutation', { })
       let docID = this.element['docID']
-      let documentsToBeClone = this.$store.state.document.currentDocuments
       let userID = this.$store.state.user.currentUserModeDetails.id
-      let folderID = this.$store.state.user.currentUserModeDetails.folder_id
       let currentPageNode = this.$router.history.current.hash
+      let folderID = this.$store.state.user.currentUserModeDetails.folder_id
+      if (this.$store.state.user.currentUserModeDetails.business_entity_folder_id) {
+        folderID = this.$store.state.user.currentUserModeDetails.business_entity_folder_id
+      }
+      let masterDocuments = this.$store.state.document.currentDocuments
+      let documentMap = this.$docservice.store.state.documentMap
+      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
+      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
+      let documentsToBeClone = []
+
+      /*
+      *   If current user is advisor, firm manager and client
+      */
+      let currentMode = this.$store.state.user.userMode.currentMode
+      if (currentMode !== 'mentor' && currentMode !== 'coach') {
+        masterDocuments.forEach((masterDocument) => {
+          let jsonData = {}
+          let currentClonedDoc = documentMap[masterDocument.docID]
+          if (currentClonedDoc) { // current cloned document
+            if (masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.masterDocID = currentClonedDoc.predecessorDocumentID
+              }
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            } else {
+              jsonData.docID = currentClonedDoc.docID
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.docID = currentClonedDoc.predecessorDocumentID
+              }
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            }
+          }
+        })
+      } else {
+        /*
+        *   If current user is mentor and coach
+        *   Iterate masterDocuments data and find the current spreadsheet that have been clicked
+        *   and replace it's master document ID into current document ID
+        */
+        masterDocuments.forEach((masterDocument) => {
+          let jsonData = {}
+          let currentClonedDoc = documentMap[masterDocument.docID]
+          if (currentClonedDoc) { // current cloned document
+            if (masterDocument.docID === docID && masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID
+              jsonData.masterDocID = masterDocument.docID
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            } else {
+              if (masterDocument.mimeType !== this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+                jsonData.docID = masterDocument.docID
+                jsonData.mimeType = masterDocument.mimeType
+                documentsToBeClone.push(jsonData)
+              }
+            }
+          } else { // if there is no cloned files
+            jsonData.docID = masterDocument.docID
+            jsonData.mimeType = masterDocument.mimeType
+            documentsToBeClone.push(jsonData)
+          }
+        })
+      }
+
+      // console.log(documentsToBeClone)
+      // return
+
+      /*
+      *   Find current clicked spreadsheet and replace it with cloned spreadsheet document
+      *   params: docID
+      */
+      let currentSpreadsheetDocID = documentMap[docID]
+      if (currentSpreadsheetDocID) {
+        docID = currentSpreadsheetDocID.docID
+      }
+
       if (docID) {
         let vm = this
-        this.$docservice.store.dispatch('scanDocument', { vm, docID, documentsToBeClone, userID, folderID, currentPageNode })
+        this.$docservice.store.dispatch('scanDocument', { vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID })
       }
-    }
+    },
+
+    funcSrc: function () {
+      console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
+      let docID = this.element['docID']
+      if (docID) {
+        // Use a preview version of the sheet
+        // console.log(`compute docID 1`, this.$docservice.store);
+        let userID = null //ZZZZZZ
+        let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
+
+        console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
+        // return replacementDocID
+        this.replacementDocID = replacementDocID
+      }
+      return ''
+    },
   }
 }
 

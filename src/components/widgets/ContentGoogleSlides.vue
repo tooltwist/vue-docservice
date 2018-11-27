@@ -5,7 +5,7 @@
     // View mode
     .container(v-if="pageEditMode==='view'")
       .my-slides-container
-        iframe(v-bind:src="src" :docId="docId" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
+        iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
 
     // Debug mode
     div(v-else-if="pageEditMode==='debug'", v-on:click.stop="select(element)")
@@ -49,14 +49,19 @@ export default {
   data: function () {
     return {
       //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
+      src: ''
     }
   },
   watch: {
-    '$docservice.store.state.refreshCounter': function ( ) {
-      console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`);
+    refreshCounter: function ( ) {
+      console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
+      this.funcSrc()
     }
   },
   computed: {
+    refreshCounter: function() {
+      return this.$docservice.store.state.refreshCounter
+    },
 
     // docID: function () {
     //   let value = this.element['docID']
@@ -77,33 +82,12 @@ export default {
     //   return ''
     // },
 
-    src: function ( ) {
-      console.log(`ContentGoogleSlides METHOD src`, this.$docservice.store.getters);
-
-      let docID = this.element['docID']
-      if (docID) {
-        if (docID.startsWith('2PACX-')) {
-          // Use the published version of the file
-          let src = `https://docs.google.com/a/tooltwist.com/presentation/d/e/${this.element.docID}/embed?start=false&loop=false&delayms=3000`
-          console.log(`published url=${src}`)
-          return src
-        } else {
-
-          // Get the substitute document ID we'll use for this user.
-          let userID = null //ZZZZZZ
-          let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
-
-          console.error(`slides replacementDocID: ${docID} -> ${replacementDocID}`);
-          let src = `https://docs.google.com/presentation/d/${replacementDocID}/preview?slide=id.p1`
-          console.log(`unpublished url=${src}`)
-          return src
-        }
-      }
-      return ''
-    },
-
     docId: function () {
       return this.element.docID
+    },
+
+    mimeType: function() {
+      return 'application/vnd.google-apps.presentation'
     },
 
     haveDocId: function () {
@@ -129,17 +113,43 @@ export default {
       return style
     }
   },
-  watch: {
-    refreshCounter (oldvalue, newvalue) {
-      console.log(`Slides refreshCounter changed from ${oldvalue} to ${newvalue}.`);
-    }
-  },
+  // watch: {
+  //   refreshCounter (oldvalue, newvalue) {
+  //     console.log(`Slides refreshCounter changed from ${oldvalue} to ${newvalue}.`);
+  //   }
+  // },
   methods: {
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
         this.$content.setPropertyElement({ element })
       }
+    },
+    funcSrc: function () {
+      console.log(`ContentGoogleSlides METHOD src`, this.$docservice.store.getters);
+
+      let docID = this.element['docID']
+      if (docID) {
+        if (docID.startsWith('2PACX-')) {
+          // Use the published version of the file
+          let src = `https://docs.google.com/a/tooltwist.com/presentation/d/e/${this.element.docID}/embed?start=false&loop=false&delayms=3000`
+          console.log(`published url=${src}`)
+          // return src
+          this.src = src
+        } else {
+
+          // Get the substitute document ID we'll use for this user.
+          let userID = null //ZZZZZZ
+          let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
+
+          console.error(`slides replacementDocID: ${docID} -> ${replacementDocID}`);
+          let src = `https://docs.google.com/presentation/d/${replacementDocID}/preview?slide=id.p1`
+          console.log(`unpublished url=${src}`)
+          // return src
+          this.src = src
+        }
+      }
+      return ''
     },
   }
 }

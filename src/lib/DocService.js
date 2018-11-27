@@ -95,7 +95,7 @@ class Docservice {
    *  Scan an existing document for data values, and regenerate documents that
    *  might use those values.
    */
-  scanDocument (vm, documentId, documentsToBeClone, userID, folderID, currentPageNode) {
+  scanDocument (vm, documentId, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID) {
 
     console.log(`Docservice.js:scanDocument()`, documentId)
 
@@ -111,11 +111,13 @@ class Docservice {
       let url = `${this.endpoint()}/scanDocument`;
       console.log(`url is ${url}`);
       let params = {
-        document_id: documentId,
-        documents_to_be_clone: documentsToBeClone,
-        user_id: userID,
-        folder_id: folderID,
-        current_page_node: currentPageNode
+        documentID: documentId,
+        documentsToBeClone: documentsToBeClone,
+        userID: userID,
+        folderID: folderID,
+        currentPageNode: currentPageNode,
+        accountingFirmID: accountingFirmID,
+        businessEntityID: businessEntityID
       }
       axios({
         method: 'post',
