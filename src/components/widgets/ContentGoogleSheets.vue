@@ -30,7 +30,7 @@
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(:style="{float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, height:`${height}px`, zwidth:'1000px', backgroundColor:'yellow' }")
             div(:style="{overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, backgroundColor:'pink'}")
-              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', :height:"`${height + 23}px`", marginTop:'-23px', :width:"`${width}px`", overflow:'hidden' }", scrolling="no")
+              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:`${height + 23}px`, marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
           div(style="clear: both;")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         .scanMessage {{scanMessage}}
