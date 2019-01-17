@@ -51,6 +51,7 @@ class Docservice {
     this.disabled = false
 
     console.log('&&& Docservice constructor', options)
+    this.protocol = options.protocol ? options.protocol : 'http'
     this.host = options.host ? options.host : 'api.docservice.io'
     this.port = options.port ? options.port : 80
     this.version = options.version ? options.version : '2.0'
@@ -85,8 +86,7 @@ class Docservice {
 
   endpoint () {
     // console.log('endpoint():', this)
-    const protocol = this.protocol ? this.protocol : 'http'
-    const endpoint = `${protocol}://${this.host}:${this.port}/api/${this.version}/${this.apikey}`
+    const endpoint = `${this.protocol}://${this.host}:${this.port}/api/${this.version}/${this.apikey}`
     return endpoint
   }
 
