@@ -5,7 +5,7 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      .my-doc-container
+      .my-doc-container(:style="contentEditStyle")
         iframe(:src="src")
 
     // Debug mode
@@ -14,11 +14,11 @@
         edit-bar-icons(:element="element")
         | google doc
       .container
-        .my-doc-container.my-dummy-iframe
+        .my-doc-container.my-dummy-iframe(:style="contentEditStyle")
 
     // Edit, layout modes
     .container(v-else, v-on:click.stop="select(element)")
-      .my-doc-container.my-dummy-iframe
+      .my-doc-container.my-dummy-iframe(:style="contentEditStyle")
 </template>
 
 <script>
@@ -52,7 +52,7 @@ export default {
       if (docID) {
         if (docID.startsWith('2PACX-')) {
           // Use the published version of the file
-          let src = `https://docs.google.com/a/tooltwist.com/presentation/d/e/${this.element.docID}/embed?start=false&loop=false&delayms=3000`
+          let src = `https://docs.google.com/document/d/${docID}/edit?embedded=true`
           console.log(`published url=${src}`)
           return src
         } else {
@@ -62,7 +62,7 @@ export default {
           let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
 
           console.log(`docs replacementDocID: ${docID} -> ${replacementDocID}`);
-          let src = `https://docs.google.com/a/tooltwist.com/document/d/e/${replacementDocID}/pub?embedded=true`
+          let src = `https://docs.google.com/document/d/${replacementDocID}/edit?embedded=true`
           console.log(`unpublished url=${src}`)
           return src
         }
@@ -79,7 +79,63 @@ export default {
       copyStyle(this.element, style, 'padding-left')
       copyStyle(this.element, style, 'padding-right')
       return style
-    }
+    },
+
+    width: function () {
+      let value = this.element['width']
+      let w = 1000
+      if (value && value.trim()) {
+        w = parseInt(value)
+      }
+      if (w < 200) {
+        w = 200
+      }
+      return w
+    },
+
+    height: function () {
+      let value = this.element['height']
+      let h = 500
+      if (value && value.trim()) {
+        h = parseInt(value)
+      }
+      if (h < 200) {
+        h = 200
+      }
+      return h
+    },
+
+    contentEditStyle: function () {
+      // console.log(`contentEditStyle()`);
+      let style = { }
+
+      // Width
+      let value = this.element['width']
+      // console.log(` width value=${value}`);
+      let w = 1000
+      if (value && value.trim()) {
+        w = parseInt(value)
+        console.log(`w=${w}`);
+        if (w < 200) {
+          w = 200
+        }
+        style.maxWidth = w + 'px'
+      }
+
+      // Height
+      value = this.element['height']
+      // console.log(` height value=${value}`);
+      let h = 500
+      if (value && value.trim()) {
+        h = parseInt(value)
+        if (h < 100) {
+          h = 100
+        }
+      }
+      style.height = h + 'px'
+      // console.log(`contentEditStyle:`, style);
+      return style
+    },
   },
   methods: {
     select (element) {

@@ -17,6 +17,16 @@
           .c-property-label doc ID
           .c-property-value
             input.input(v-model="docID")
+        .tt-property
+          .c-property-label
+            | Width
+          .c-property-value
+            input.input(v-model="protectedWidth", placeholder="default = 1000")
+        .tt-property
+          .c-property-label
+            | Height
+          .c-property-value
+            input.input(v-model="protectedHeight", placeholder="default = 500")
 
 </template>
 
@@ -40,6 +50,24 @@ export default {
         this.$content.setProperty({ vm: this, element: this.element, name: 'docID', value })
       }
     },
+    protectedWidth: {
+      get () {
+        let value = this.element['width']
+        return value
+      },
+      set (value) {
+        this.$content.setProperty({ vm: this, element: this.element, name: 'width', value })
+      }
+    },
+    protectedHeight: {
+      get () {
+        let value = this.element['height']
+        return value
+      },
+      set (value) {
+        this.$content.setProperty({ vm: this, element: this.element, name: 'height', value })
+      }
+    }
   },
 }
 </script>
