@@ -25,6 +25,7 @@
             .select
               select(v-model="protectedDisplayMode")
                 option(v-if="!published" value="editable") Editable
+                option(v-if="!published" value="editable-noupdate") Editable, no update button
                 option(v-if="!published" value="editable-nomenus") Editable, no menus
                 option(v-if="!published" value="editable-dataonly") Editable, no menus/rows/tabs&nbsp;
                 option(v-if="!published" value="preview") Preview

@@ -16,6 +16,11 @@
         .scanMessage {{scanMessage}}
         .is-clearfix
 
+      div(v-if="displayMode==='editable-noupdate'")
+        .my-sheets-container(:style="contentEditStyle")
+          // Regular embedded mode, to allow editing (with menus, rows and tabs)
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
         .my-sheets-container(:style="contentEditStyle")
@@ -277,6 +282,8 @@ export default {
       switch(mode) {
         case 'editable':
           return '(editable=true)'
+        case 'editable-noupdate':
+          return '(editable, without update button)'
         case 'editable':
           return '(editable)'
         case 'editable-nomenus':
