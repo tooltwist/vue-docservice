@@ -15,10 +15,26 @@
         | google doc
       .container
         .my-doc-container.my-dummy-iframe(:style="contentEditStyle")
+          .valign
+            | Google Documents
+            br
+            .modeDescription(v-if="haveDocId")
+              | {{modeDescription}}
+            .modeError(v-else)
+              br
+              | Document not specified
 
     // Edit, layout modes
     .container(v-else, v-on:click.stop="select(element)")
       .my-doc-container.my-dummy-iframe(:style="contentEditStyle")
+          .valign
+          | Google Documents
+          br
+          .modeDescription(v-if="haveDocId")
+            | {{modeDescription}}
+          .modeError(v-else)
+            br
+            | Document not specified
 </template>
 
 <script>
@@ -178,8 +194,8 @@ export default {
   }
 
   .my-doc-container {
-    position: relative;
-    padding-bottom: 56.25%;
+    // position: relative;
+    // padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
     margin-top: $c-embed-margin-top;
@@ -187,6 +203,28 @@ export default {
 
     &.my-dummy-iframe {
       background-color: $c-embed-border-color;
+
+      .valign {
+        position: relative;
+        text-align: left;
+        margin-top: 25px;
+        margin-left: 25px;
+        // top: 120px;
+        font-size: 1.5em;
+        font-family: Arial;
+        font-weight: lighter;
+        color: #a0a0a0;
+
+        .modeDescription {
+          font-size: 16px;
+        }
+        .modeError {
+          font-size: 20px;
+          color: $c-editbar-color;
+          font-weight: bold;
+          font-style: italic;
+        }
+      }
     }
 
     iframe,
