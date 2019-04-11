@@ -13,6 +13,8 @@
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        | &nbsp;
+        a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
         .scanMessage {{scanMessage}}
         .is-clearfix
 
@@ -20,6 +22,14 @@
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+        a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
+
+      // Edit, no menus, no update
+      div(v-else-if="displayMode==='editable-nomenus-noupdate'")
+        .my-sheets-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+        .scanMessage {{scanMessage}}
+        .is-clearfix
 
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
@@ -153,6 +163,10 @@ export default {
       return this.$docservice.store.state.scanMessage
     },
 
+    canOpenInNewTab: function () {
+      return this.element['canOpenInNewTab']
+    },
+
     width: function () {
       let value = this.element['width']
       let w = 1000
@@ -284,6 +298,8 @@ export default {
           return '(editable=true)'
         case 'editable-noupdate':
           return '(editable, without update button)'
+        case 'editable-nomenus-noupdate':
+          return '(editable, without menus, without update button)'
         case 'editable':
           return '(editable)'
         case 'editable-nomenus':

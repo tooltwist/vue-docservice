@@ -26,12 +26,18 @@
               select(v-model="protectedDisplayMode")
                 option(v-if="!published" value="editable") Editable
                 option(v-if="!published" value="editable-noupdate") Editable, no update button
+                option(v-if="!published" value="editable-nomenus-noupdate") Editable, no menus, no update button
                 option(v-if="!published" value="editable-nomenus") Editable, no menus
                 option(v-if="!published" value="editable-dataonly") Editable, no menus/rows/tabs&nbsp;
                 option(v-if="!published" value="preview") Preview
                 option(v-if="!published" value="preview-notabs") Preview without tabs
                 option(v-if="published" value="published") View published sheets
                 option(v-if="published" value="published-notabs") View published sheets, no tabs&nbsp;
+        .tt-property
+          .c-property-label
+            | Show 'open in new Tab' Button
+          .c-property-value
+            input(v-model="canOpenInNewTab" type="checkbox")
         .tt-property
           .c-property-label
             | Width
@@ -84,6 +90,15 @@ export default {
       },
       set (value) {
         this.$content.setProperty({ vm: this, element: this.element, name: 'displayMode', value })
+      }
+    },
+    canOpenInNewTab: {
+      get () {
+        let value = this.element['canOpenInNewTab']
+        return value
+      },
+      set (value) {
+        this.$content.setProperty({ vm: this, element: this.element, name: 'canOpenInNewTab', value })
       }
     },
     protectedWidth: {
