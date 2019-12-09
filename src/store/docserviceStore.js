@@ -67,6 +67,15 @@ export const getters = {
       return replacement.docID
     }
     return docID
+  },
+  predecessorDocumentID: (state) => (docID, userID) => {
+    console.log(`GETTER predecessorDocumentID(${docID}, ${userID})`);
+    let replacement = state.documentMap[docID]
+    if (replacement && state.refreshCounter > 1) {
+      console.log(`Found predecessor document ${replacement.predecessorDocumentID}`);
+      return replacement.predecessorDocumentID
+    }
+    return docID
   }
 }
 
@@ -99,6 +108,7 @@ export const actions = {
           })
           commit('scanStateMutation', { currentlyScanning: false })
           commit('refreshMutation', { })
+          window.location.reload(0)
         }, 5000)
         // setTimeout(() => {
         //   window.location.reload()

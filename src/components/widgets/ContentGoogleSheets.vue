@@ -8,7 +8,16 @@
       //- | mode is&nbsp;
       //- b {{displayMode}}
       //- | &nbsp;{{modeDescription}} - {{refreshCounter}}
-      div(v-if="displayMode==='editable'")
+      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+        .my-sheets-container(:style="contentEditStyle")
+          // Regular embedded mode, to allow editing (with menus, rows and tabs)
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
+        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
+        | &nbsp;
+        a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
+        .scanMessage {{scanMessage}}
+        .is-clearfix
+      div(v-else-if="displayMode==='editable'")
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
@@ -117,13 +126,15 @@ export default {
   data: function () {
     return {
       //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
-      replacementDocID: ''
+      replacementDocID: '',
+      hasExistingDocument: ''
     }
   },
   watch: {
     refreshCounter: function ( ) {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
       this.funcSrc()
+      this.hasClonedDocument()
     }
   },
   computed: {
@@ -444,10 +455,26 @@ export default {
         // console.log(`compute docID 1`, this.$docservice.store);
         let userID = null //ZZZZZZ
         let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
+        let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
 
         console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
+
         // return replacementDocID
         this.replacementDocID = replacementDocID
+      }
+      return ''
+    },
+
+    hasClonedDocument: function () {
+      console.log(`ContentGoogleSheets METHOD hasClonedDocument`, this.$docservice.store.getters);
+      let docID = this.element['docID']
+      if (docID) {
+        let userID = null //ZZZZZZ
+        let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
+
+
+        // return replacementDocID
+        this.hasExistingDocument = predecessorDocumentID
       }
       return ''
     },
