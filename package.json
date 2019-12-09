@@ -1,6 +1,6 @@
 {
   "name": "@tooltwist/vue-docservice",
-  "version": "0.1.84",
+  "version": "0.1.85",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve --open",
