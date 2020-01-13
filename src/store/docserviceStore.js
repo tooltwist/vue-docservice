@@ -108,22 +108,49 @@ export const actions = {
           })
           commit('scanStateMutation', { currentlyScanning: false })
           commit('refreshMutation', { })
-          window.location.reload(0)
-        }, 5000)
-        // setTimeout(() => {
-        //   window.location.reload()
-        // }, 10000);
+          // window.location.reload(0)
+        }, 15000)
+        setTimeout(() => {
+          window.location.reload()
+        }, 15000);
       })
       .catch(e => {
         commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
         let desc = `Error scanning document`
         console.log(desc, e)
-        //state.saveMsg = ERROR
-        // commit('setSaveMsg', { msg: ERROR })
-        /* handleError(this, desc, params, e) */
-        //this.selectError = true
-      })//- axios
-    // }, SAVE_INTERVAL)
+      })
+  },
+  unlockPlay ({ commit, state }, { vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID }) {
+    console.log(`In Action docservice/unlockPlay(docID=${docID})`)
+
+    commit('scanStateMutation', { currentlyScanning: true, message: 'scanning...'})
+    vm.$docservice.unlockPlay(vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID)
+      .then(result => {
+        commit('scanStateMutation', { currentlyScanning: true, message: 'updating...'})
+        console.log(`result of save:`, result)
+
+        // Wait a while, to give the Google permissions time to propagate
+        setTimeout(() => {
+          // console.log(`result of save:`, result.data)
+          result.forEach(obj => {
+            console.log(`obj is `, obj);
+            let originalDocumentID = obj.originalDocumentID
+            let replacementDocumentID = obj.replacementDocumentID
+            let userID = null
+            commit('mapDocumentMutation', { originalDocumentID, replacementDocumentID, userID })
+          })
+          commit('scanStateMutation', { currentlyScanning: false })
+          commit('refreshMutation', { })
+        }, 15000)
+        setTimeout(() => {
+          window.location.reload()
+        }, 15000);
+      })
+      .catch(e => {
+        commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
+        let desc = `Error scanning document`
+        console.log(desc, e)
+      })
   }
 }
 

@@ -143,6 +143,53 @@ class Docservice {
     })//- promise
   }// scanDocument()
 
+  /*
+   *  Unlock play clone new document for advisor
+   */
+  unlockPlay (vm, documentId, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID) {
+
+    console.log(`Docservice.js:unlockPlay()`, documentId)
+
+    return new Promise((resolve, reject) => {
+
+      if (this.options.debug) {
+        console.log('select()');
+      }
+      let url = `${this.endpoint()}/unlockPlay`;
+      console.log(`url is ${url}`);
+      let params = {
+        documentID: documentId,
+        documentsToBeClone: documentsToBeClone,
+        userID: userID,
+        folderID: folderID,
+        currentPageNode: currentPageNode,
+        accountingFirmID: accountingFirmID,
+        businessEntityID: businessEntityID
+      }
+      axios({
+        method: 'post',
+        url,
+        headers: {
+          // 'Authorization': 'Bearer ' + this.$docservice.jwt,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        data: params
+      })
+        .then(response => {
+          // JSON responses are automatically parsed.
+          console.log(`RESPONSE IS`, response.data)
+          let reply = response.data
+          return resolve(reply);
+        })
+        .catch(e => {
+          axiosError(vm, url, params, e)
+          reject(e)
+        })
+
+    })
+  }
+
   refresh (state, { }) {
     console.log('Docservice.refresh()')
     this.store.commit('refreshMutation', { })

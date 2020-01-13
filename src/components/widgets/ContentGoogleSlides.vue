@@ -4,9 +4,14 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      .my-slides-container
-        iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
+      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+        .my-slides-container
+          iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="height: 105% !important")
+        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
 
+      div(v-else)
+        .my-slides-container
+          iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true")
     // Debug mode
     div(v-else-if="pageEditMode==='debug'", v-on:click.stop="select(element)")
       .c-layout-mode-heading
@@ -49,20 +54,24 @@ export default {
   data: function () {
     return {
       //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
-      src: ''
+      src: '',
+      hasExistingDocument: ''
     }
   },
   watch: {
     refreshCounter: function ( ) {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
       this.funcSrc()
-    }
+      this.hasClonedDocument()
+    },
   },
   computed: {
     refreshCounter: function() {
       return this.$docservice.store.state.refreshCounter
     },
-
+    currentlyScanning: function () {
+      return this.$docservice.store.state.currentlyScanning
+    },
     // docID: function () {
     //   let value = this.element['docID']
     //   return value ? value : ''
@@ -151,6 +160,110 @@ export default {
       }
       return ''
     },
+    hasClonedDocument: function () {
+      console.log(`ContentGoogleSheets METHOD hasClonedDocument`, this.$docservice.store.getters);
+      let docID = this.element['docID']
+      if (docID) {
+        let userID = null //ZZZZZZ
+        let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
+
+
+        // return replacementDocID
+        this.hasExistingDocument = predecessorDocumentID
+      }
+      return ''
+    },
+    doUpdate () {
+      let docID = this.element['docID']
+      let userID = this.$store.state.user.currentUserModeDetails.id
+      let currentPageNode = this.$router.history.current.hash
+      let folderID = this.$store.state.user.currentUserModeDetails.folder_id
+
+      if (this.$store.state.user.currentUserModeDetails.business_entity_folder_id) {
+        folderID = this.$store.state.user.currentUserModeDetails.business_entity_folder_id
+      }
+
+      let masterDocuments = this.$store.state.document.currentDocuments
+      let documentMap = this.$docservice.store.state.documentMap
+      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
+      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
+      let documentsToBeClone = []
+
+      /*
+      *   If current user is advisor, firm manager and client
+      */
+
+      let currentMode = this.$store.state.user.userMode.currentMode
+      
+      if (currentMode !== 'mentor' && currentMode !== 'coach') {
+        masterDocuments.forEach((masterDocument) => {
+          let jsonData = {}
+          let currentClonedDoc = documentMap[masterDocument.docID]
+          if (currentClonedDoc) { // current cloned document
+            if (masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.masterDocID = currentClonedDoc.predecessorDocumentID
+              }
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            } else {
+              jsonData.docID = currentClonedDoc.docID
+              if (currentClonedDoc.predecessorDocumentID) {
+                jsonData.docID = currentClonedDoc.predecessorDocumentID
+              }
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            }
+          }
+        })
+      } else {
+        /*
+        *   If current user is mentor and coach
+        *   Iterate masterDocuments data and find the current spreadsheet that have been clicked
+        *   and replace it's master document ID into current document ID
+        */
+        masterDocuments.forEach((masterDocument) => {
+          let jsonData = {}
+          let currentClonedDoc = documentMap[masterDocument.docID]
+          if (currentClonedDoc) { // current cloned document
+            if (masterDocument.docID === docID && masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+              jsonData.docID = currentClonedDoc.docID
+              jsonData.masterDocID = masterDocument.docID
+              jsonData.mimeType = masterDocument.mimeType
+              documentsToBeClone.push(jsonData)
+            } else {
+              if (masterDocument.mimeType !== this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
+                jsonData.docID = masterDocument.docID
+                jsonData.mimeType = masterDocument.mimeType
+                documentsToBeClone.push(jsonData)
+              }
+            }
+          } else { // if there is no cloned files
+            jsonData.docID = masterDocument.docID
+            jsonData.mimeType = masterDocument.mimeType
+            documentsToBeClone.push(jsonData)
+          }
+        })
+      }
+
+      // console.log(documentsToBeClone)
+      // return
+
+      /*
+      *   Find current clicked spreadsheet and replace it with cloned spreadsheet document
+      *   params: docID
+      */
+      let currentSpreadsheetDocID = documentMap[docID]
+      if (currentSpreadsheetDocID) {
+        docID = currentSpreadsheetDocID.docID
+      }
+
+      if (docID) {
+        let vm = this
+        this.$docservice.store.dispatch('scanDocument', { vm, docID, documentsToBeClone, userID, folderID, currentPageNode, accountingFirmID, businessEntityID })
+      }
+    }
   }
 }
 
