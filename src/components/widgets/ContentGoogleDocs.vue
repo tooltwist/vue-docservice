@@ -5,7 +5,8 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+      div.doc-space(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-doc-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/document/d/${replacementDocID}/preview`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
@@ -13,7 +14,8 @@
           br
           br
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
-      div(v-else)
+      div.doc-space(v-else)
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-doc-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/document/d/${replacementDocID}/edit`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
@@ -58,9 +60,10 @@ export default {
   mixins: [ ContentMixins, CutAndPasteMixins ],
   data: function () {
     return {
-      // src: '',
+      src: '',
+      replacementDocID: '',
       hasExistingDocument: '',
-      replacementDocID: ''
+      fileStatusText: ''
     }
   },
   watch: {
@@ -68,9 +71,13 @@ export default {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
       this.funcSrc()
       this.hasClonedDocument()
+      this.updateFileStatusText()
     },
   },
   computed: {
+    getFileStatusText () {
+      return this.fileStatusText
+    },
     refreshCounter: function() {
       return this.$docservice.store.state.refreshCounter
     },
@@ -192,6 +199,39 @@ export default {
     }
   },
   methods: {
+    updateFileStatusText: function () {
+      let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
+      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
+      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
+      let workEntityMode = this.$store.state.user.userMode.workEntityMode
+      let currentMode = this.$store.state.user.userMode.currentMode
+      let userID = this.$store.state.user.currentUserModeDetails.id
+      let superiorRoles = ['mentor', 'coach', 'practice manager']
+      let docID = this.element['docID']
+
+      /* Checks wether current document is master file or a clone copy
+       * returns a text if document is appropriate with the user mode
+       */
+      if (predecessorDocumentID !== docID && predecessorDocumentID) { // document is user own copy
+        this.fileStatusText = false
+      } else if (this.replacementDocID !== docID && this.replacementDocID && businessEntityID) { // document is entity copy
+        this.fileStatusText = false
+      } else if (this.replacementDocID !== docID && this.replacementDocID && accountingFirmID) { // document is firm copy
+        if (currentMode === 'client' || workEntityMode) { // if user is client or in work entity mode
+          this.fileStatusText = 'You are currently viewing a firm master document. Sync files to clone your own copy.'
+        } else {
+          this.fileStatusText = false
+        }
+      } else {
+        if (superiorRoles.includes(currentMode)) { // if master document is allowed in a role
+          this.fileStatusText = false
+        } else {
+          this.fileStatusText = 'You are currently viewing a master document. Sync files to clone your own copy.'
+        }
+      }
+
+      return ''
+    },
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
@@ -366,6 +406,7 @@ export default {
     overflow: hidden;
     margin-top: $c-embed-margin-top;
     margin-bottom: $c-embed-margin-bottom;
+    margin-top: 0px !important;
 
     &.my-dummy-iframe {
       background-color: $c-embed-border-color;
@@ -374,7 +415,6 @@ export default {
         position: relative;
         text-align: left;
         margin-top: 25px;
-        margin-left: 25px;
         // top: 120px;
         font-size: 1.5em;
         font-family: Arial;
@@ -403,5 +443,26 @@ export default {
       height: 100%;
       border: solid 1px $c-embed-border-color;
     }
+  }
+  
+  .doc-notification {
+    z-index: 2000;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 16;
+    background-color: #dd0038;
+    padding: 1px;
+    margin: 0;
+    border: none;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 11px;
   }
 </style>

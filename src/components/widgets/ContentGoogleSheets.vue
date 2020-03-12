@@ -5,10 +5,8 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      //- | mode is&nbsp;
-      //- b {{displayMode}}
-      //- | &nbsp;{{modeDescription}} - {{refreshCounter}}
       div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
@@ -18,6 +16,7 @@
         .scanMessage {{scanMessage}}
         .is-clearfix
       div(v-else-if="displayMode==='editable'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
@@ -35,6 +34,7 @@
 
       // Edit, no menus, no update
       div(v-else-if="displayMode==='editable-nomenus-noupdate'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         .scanMessage {{scanMessage}}
@@ -42,6 +42,7 @@
 
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
@@ -50,6 +51,7 @@
 
       // Edit, no menus, no rows, no sheet tabs
       div(v-else-if="displayMode==='editable-dataonly'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(:style="{float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, height:`${height}px`, zwidth:'1000px', backgroundColor:'yellow' }")
@@ -61,27 +63,35 @@
         .is-clearfix
 
       // Preview unpublished document
-      .my-sheets-container(v-else-if="displayMode==='preview'", :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
+      div(v-else-if="displayMode==='preview'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
+        .my-sheets-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
 
         // Preview unpublished document, without tabs
-      .my-sheets-container(v-else-if="displayMode==='preview-notabs'", :style="contentEditStyle")
-        // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
-        div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
-          div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
-        div(style="clear: both;")
+      div(v-else-if="displayMode==='preview-notabs'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
+        .my-sheets-container(:style="contentEditStyle")
+          // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
+          div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
+            div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
+              iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+          div(style="clear: both;")
 
-      .my-sheets-container(v-else-if="displayMode==='published-notabs'", :style="contentEditStyle")
-        // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
-        div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
-          div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
-            iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
-        div(style="clear: both;")
+      div(v-else-if="displayMode==='published-notabs'")
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
+        .my-sheets-container(:style="contentEditStyle")   
+          // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
+          div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
+            div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
+              iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
+          div(style="clear: both;")
 
 
-      .my-sheets-container(v-else, :style="contentEditStyle")
-        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :mimeType="mimeType", :docID="docID")
+      div(v-else)
+        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
+        .my-sheets-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :mimeType="mimeType", :docID="docID")
 
 
     // Debug mode
@@ -127,7 +137,8 @@ export default {
     return {
       //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
       replacementDocID: '',
-      hasExistingDocument: ''
+      hasExistingDocument: '',
+      fileStatusText: ''
     }
   },
   watch: {
@@ -135,13 +146,16 @@ export default {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
       this.funcSrc()
       this.hasClonedDocument()
+      this.updateFileStatusText()
     }
   },
   computed: {
+    getFileStatusText () {
+      return this.fileStatusText
+    },
     refreshCounter () {
       return this.$docservice.store.state.refreshCounter
     },
-
     docID: function () {
       let value = this.element['docID']
       return value ? value : ''
@@ -150,21 +164,6 @@ export default {
     mimeType: function () {
       return 'application/vnd.google-apps.spreadsheet'
     },
-
-    // replacementDocID: function ( ) {
-    //   console.log(`ContentGoogleSheets METHOD replacementDocumentID`, this.$docservice.store.getters);
-    //   let docID = this.element['docID']
-    //   if (docID) {
-    //     // Use a preview version of the sheet
-    //     // console.log(`compute docID 1`, this.$docservice.store);
-    //     let userID = null //ZZZZZZ
-    //     let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
-
-    //     console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
-    //     return replacementDocID
-    //   }
-    //   return ''
-    // },
 
     currentlyScanning: function () {
       return this.$docservice.store.state.currentlyScanning
@@ -350,13 +349,45 @@ export default {
     }
   },
   methods: {
+    updateFileStatusText: function () {
+      let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
+      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
+      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
+      let workEntityMode = this.$store.state.user.userMode.workEntityMode
+      let currentMode = this.$store.state.user.userMode.currentMode
+      let userID = this.$store.state.user.currentUserModeDetails.id
+      let superiorRoles = ['mentor', 'coach', 'practice manager']
+      let docID = this.element['docID']
+
+      /* Checks wether current document is master file or a clone copy
+       * returns a text if document is appropriate with the user mode
+       */
+      if (predecessorDocumentID !== docID && predecessorDocumentID) { // document is user own copy
+        this.fileStatusText = false
+      } else if (this.replacementDocID !== docID && this.replacementDocID && businessEntityID) { // document is entity copy
+        this.fileStatusText = false
+      } else if (this.replacementDocID !== docID && this.replacementDocID && accountingFirmID) { // document is firm copy
+        if (currentMode === 'client' || workEntityMode) { // if user is client or in work entity mode
+          this.fileStatusText = 'You are currently viewing a firm master document. Sync files to clone your own copy.'
+        } else {
+          this.fileStatusText = false
+        }
+      } else {
+        if (superiorRoles.includes(currentMode)) { // if master document is allowed in a role
+          this.fileStatusText = false
+        } else {
+          this.fileStatusText = 'You are currently viewing a master document. Sync files to clone your own copy.'
+        }
+      }
+
+      return ''
+    },
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
         this.$content.setPropertyElement({ element })
       }
     },
-
     doUpdate () {
       console.log(`doUpdate()`);
       // this.$docservice.store.commit('refreshMutation', { })
@@ -518,6 +549,7 @@ export default {
     overflow: hidden;
     margin-top: $c-embed-margin-top;
     margin-bottom: $c-embed-margin-bottom;
+    margin-top: 3px !important;
 
     &.my-dummy-iframe {
       background-color: $c-embed-border-color;
@@ -566,4 +598,26 @@ export default {
     color: #999;
   }
 
+
+.doc-notification {
+    z-index: 2000;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 16;
+    background-color: #dd0038;
+    padding: 1px;
+    margin: 0;
+    border: none;
+    border-bottom: 2px solid #fff;
+    cursor: pointer;
+    font-family: arial;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+    font-weight: 800;
+    font-size: 11px;
+    margin-top: 10px;
+}
 </style>
