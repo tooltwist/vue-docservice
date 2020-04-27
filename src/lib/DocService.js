@@ -190,6 +190,49 @@ class Docservice {
     })
   }
 
+  /*
+   *  Restore document - bring back document state to master file original state
+   */
+  restoreDocument (vm, ownDoc, parentDocID, folderID, accountingFirmID, businessEntityID, cloneFile) {
+
+    console.log(`Docservice.js:restoreDocument()`, ownDoc)
+
+    return new Promise((resolve, reject) => {
+      let url = `${this.endpoint()}/restore-document`;
+      console.log(`url is ${url}`);
+
+      let params = {
+        ownDoc: ownDoc,
+        parentDocID: parentDocID,
+        folderID: folderID,
+        accountingFirmID: accountingFirmID,
+        businessEntityID: businessEntityID,
+        cloneFile: cloneFile
+      }
+      axios({
+        method: 'post',
+        url,
+        headers: {
+          // 'Authorization': 'Bearer ' + this.$docservice.jwt,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        data: params
+      })
+        .then(response => {
+          // JSON responses are automatically parsed.
+          console.log(`RESPONSE IS`, response.data)
+          let reply = response.data
+          return resolve(reply);
+        })
+        .catch(e => {
+          axiosError(vm, url, params, e)
+          reject(e)
+        })
+
+    })
+  }
+
   refresh (state, { }) {
     console.log('Docservice.refresh()')
     this.store.commit('refreshMutation', { })

@@ -5,53 +5,57 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
+      //- | mode is&nbsp;
+      //- b {{displayMode}}
+      //- | &nbsp;{{modeDescription}} - {{refreshCounter}}
       div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
         | &nbsp;
         a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
+        | &nbsp;
         .scanMessage {{scanMessage}}
         .is-clearfix
       div(v-else-if="displayMode==='editable'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
         | &nbsp;
         a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
+        | &nbsp;
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
         .is-clearfix
-
       div(v-else-if="displayMode==='editable-noupdate'")
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
-
-      // Edit, no menus, no update
-      div(v-else-if="displayMode==='editable-nomenus-noupdate'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
-        .my-sheets-container(:style="contentEditStyle")
-          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+        | &nbsp;
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
         .is-clearfix
-
+      // Edit, no menus, no update
+      div(v-else-if="displayMode==='editable-nomenus-noupdate'")
+        .my-sheets-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
+        .scanMessage {{scanMessage}}
+        .is-clearfix
       // Edit, no menus
       div(v-else-if="displayMode==='editable-nomenus'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        | &nbsp;
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
         .is-clearfix
-
       // Edit, no menus, no rows, no sheet tabs
       div(v-else-if="displayMode==='editable-dataonly'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(:style="{float:'left', border:'1px solid #f3f3f3', overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, height:`${height}px`, zwidth:'1000px', backgroundColor:'yellow' }")
@@ -59,39 +63,34 @@
               iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:`${height + 23}px`, marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
           div(style="clear: both;")
         button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        | &nbsp;
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
         .is-clearfix
-
       // Preview unpublished document
       div(v-else-if="displayMode==='preview'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
         .my-sheets-container(:style="contentEditStyle")
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
-
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         // Preview unpublished document, without tabs
       div(v-else-if="displayMode==='preview-notabs'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
-        .my-sheets-container(:style="contentEditStyle")
+        .my-sheets-container
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
             div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
               iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: -45px; height: 650px; margin-top: -23px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
           div(style="clear: both;")
-
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
       div(v-else-if="displayMode==='published-notabs'")
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
-        .my-sheets-container(:style="contentEditStyle")   
+        .my-sheets-container(:style="contentEditStyle")
           // From http://metricrat.co.uk/google-sites-classic-embed-live-working-google-sheet-range
           div(style="float: left; border: 0px solid #f3f3f3; overflow: hidden; margin: 0px auto; max-width: 1000px; height: 500px;")
             div(style="overflow: hidden; margin: 0px auto; max-width: 1000px;")
               iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :docID="docID", :mimeType="mimeType", style="margin-right: -10px; margin-left: 0px; height: 650px; margin-top: -29px; width: 1010px; overflow: hidden; border: none;", scrolling="no")
           div(style="clear: both;")
-
-
-      div(v-else)
-        span.doc-notification(v-if="getFileStatusText") {{getFileStatusText}}
-        .my-sheets-container(:style="contentEditStyle")
-          iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :mimeType="mimeType", :docID="docID")
+        button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
+      .my-sheets-container(v-else, :style="contentEditStyle")
+        iframe(:src="`https://docs.google.com/a/tooltwist.com/spreadsheets/d/e/${element.docID}/pubhtml?widget=true&amp;headers=false`", :mimeType="mimeType", :docID="docID")
 
 
     // Debug mode
@@ -124,8 +123,11 @@
 </template>
 
 <script>
+import axios from 'axios'
+import axiosError from '../../lib/axiosError.js'
 import ContentMixins from '../../mixins/ContentMixins'
 import CutAndPasteMixins from '../../mixins/CutAndPasteMixins'
+
 
 export default {
   name: 'content-google-sheets',
@@ -138,7 +140,7 @@ export default {
       //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
       replacementDocID: '',
       hasExistingDocument: '',
-      fileStatusText: ''
+      hasBeenUpdated: false
     }
   },
   watch: {
@@ -146,37 +148,71 @@ export default {
       console.log(`^&#^%$&^%$ WATCHED CHANGED REFRESHCOUNTER`)
       this.funcSrc()
       this.hasClonedDocument()
-      this.updateFileStatusText()
     }
   },
   computed: {
-    getFileStatusText () {
-      return this.fileStatusText
-    },
     refreshCounter () {
       return this.$docservice.store.state.refreshCounter
+    },
+    getHasbeenUpdated () {
+      return this.hasBeenUpdated
     },
     docID: function () {
       let value = this.element['docID']
       return value ? value : ''
     },
+    allowRestoreBtn: function () {
+      let mode = this.$store.state.user.userMode.currentMode
 
+      switch (mode) {
+        case 'client':
+          return this.getHasbeenUpdated
+          break;
+        case 'advisor':
+          return true
+          break;
+        case 'advisor manager':
+          return true
+          break;
+        default:
+          return false
+          break;
+      }
+    },
     mimeType: function () {
       return 'application/vnd.google-apps.spreadsheet'
     },
+    getRestoreBtnLabel: function () {
+      let mode = this.$store.state.user.userMode.currentMode
 
+      switch (mode) {
+        case 'client':
+          return 'Restore'
+          break;
+        case 'advisor':
+          return 'Restore'
+          break;
+        case 'advisor manager':
+          if (this.getHasbeenUpdated) {
+            return 'Unlock'
+          } else {
+            return 'Lock'
+          }
+          break;
+      }
+    },
     currentlyScanning: function () {
       return this.$docservice.store.state.currentlyScanning
     },
-
     scanMessage: function () {
       return this.$docservice.store.state.scanMessage
     },
-
     canOpenInNewTab: function () {
       return this.element['canOpenInNewTab']
     },
-
+    showRestoreBtn: function () {
+      return this.element['showRestoreBtn']
+    },
     width: function () {
       let value = this.element['width']
       let w = 1000
@@ -349,44 +385,94 @@ export default {
     }
   },
   methods: {
-    updateFileStatusText: function () {
-      let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
-      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
-      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
-      let workEntityMode = this.$store.state.user.userMode.workEntityMode
-      let currentMode = this.$store.state.user.userMode.currentMode
-      let userID = this.$store.state.user.currentUserModeDetails.id
-      let superiorRoles = ['mentor', 'coach', 'practice manager']
-      let docID = this.element['docID']
-
-      /* Checks wether current document is master file or a clone copy
-       * returns a text if document is appropriate with the user mode
-       */
-      if (predecessorDocumentID !== docID && predecessorDocumentID) { // document is user own copy
-        this.fileStatusText = false
-      } else if (this.replacementDocID !== docID && this.replacementDocID && businessEntityID) { // document is entity copy
-        this.fileStatusText = false
-      } else if (this.replacementDocID !== docID && this.replacementDocID && accountingFirmID) { // document is firm copy
-        if (currentMode === 'client' || workEntityMode) { // if user is client or in work entity mode
-          this.fileStatusText = 'You are currently viewing a firm master document. Sync files to clone your own copy.'
-        } else {
-          this.fileStatusText = false
-        }
-      } else {
-        if (superiorRoles.includes(currentMode)) { // if master document is allowed in a role
-          this.fileStatusText = false
-        } else {
-          this.fileStatusText = 'You are currently viewing a master document. Sync files to clone your own copy.'
-        }
-      }
-
-      return ''
-    },
     select (element) {
       console.log(`select()`, element)
       if (this.pageEditMode != 'view') {
         this.$content.setPropertyElement({ element })
       }
+    },
+    restore () {
+      let mode = this.$store.state.user.userMode.currentMode
+      let masterFile = this.element['docID']
+      let docUserId = null
+      let predDocument = this.$docservice.store.getters['predecessorDocumentID'](masterFile, docUserId)
+      let parentDocID = predDocument ? predDocument : masterFile
+      let userID = this.$store.state.user.currentUserModeDetails.id
+      let currentPageNode = this.$router.history.current.hash
+      let folderID = this.$store.state.user.currentUserModeDetails.folder_id
+      let accountingFirmID = this.$store.state.user.currentUserModeDetails.account_firm_id
+      let businessEntityID = this.$store.state.user.currentUserModeDetails.business_entity_id
+      let ownDoc = this.replacementDocID
+      let cloneFile = mode === 'client' ? 1 : 0
+      let vm = this
+
+      if (this.$store.state.user.currentUserModeDetails.business_entity_folder_id) {
+        folderID = this.$store.state.user.currentUserModeDetails.business_entity_folder_id
+      }
+      
+      if (mode === 'client' || mode === 'advisor') {
+        this.$dialog.confirm({
+          title: "Restore Document",
+          message:
+            "Are you sure you want to restore this document? Restoring this document will discard all your changes and get the latest changes.",
+          confirmText: "Restore",
+          onConfirm: () => {
+            this.$docservice.store.dispatch('restoreDocument', { vm, ownDoc, parentDocID, folderID, accountingFirmID, businessEntityID, cloneFile})
+          }
+        });
+      } else {
+        if (!this.getHasbeenUpdated) {
+          this.$dialog.confirm({
+            title: "Lock Document",
+            message:
+              "Lock this document by making some changes.",
+            confirmText: "Ok",
+            onConfirm: () => {
+            }
+          });
+        } else {
+          this.$dialog.confirm({
+            title: "Unlock Document",
+            message:
+              "Are you sure you want to unlock this document? Unlocking this document will discard all your changes and get the latest changes.",
+            confirmText: "Unlock",
+            onConfirm: () => {
+              let cloneFile = this.hasExistingDocument == '' ? 1 : 0
+              this.$docservice.store.dispatch('restoreDocument', { vm, ownDoc, parentDocID, folderID, accountingFirmID, businessEntityID, cloneFile})
+            }
+          }); 
+        }
+      }
+    },
+    getCurrentRevision (fileId) {
+        let vm = this
+        let masterFile = this.element['docID']
+        let docUserId = null
+        let predDocument = this.$docservice.store.getters['predecessorDocumentID'](masterFile, docUserId)
+        let parentDocID = predDocument ? predDocument : masterFile
+        let endpoint = `${this.$docservice.protocol}://${this.$docservice.host}:${this.$docservice.port}/api/${this.$docservice.version}/${this.$docservice.apikey}`
+        let url = `${endpoint}/get/latest-revision`
+        let params = {
+          file_id: fileId,
+          parent_doc_id: parentDocID
+        }
+        
+        axios({
+          method: 'post',
+          url,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          data: params
+        })
+        .then(response => {
+          this.hasBeenUpdated = (response.data.revision != 1 && response.data.revision !=  null)          
+        })
+        .catch(e => {
+          axiosError(vm, url, params, e)
+          console.log(e)
+        })
     },
     doUpdate () {
       console.log(`doUpdate()`);
@@ -492,6 +578,7 @@ export default {
 
         // return replacementDocID
         this.replacementDocID = replacementDocID
+        this.getCurrentRevision(replacementDocID)
       }
       return ''
     },
@@ -549,7 +636,6 @@ export default {
     overflow: hidden;
     margin-top: $c-embed-margin-top;
     margin-bottom: $c-embed-margin-bottom;
-    margin-top: 3px !important;
 
     &.my-dummy-iframe {
       background-color: $c-embed-border-color;
@@ -598,26 +684,4 @@ export default {
     color: #999;
   }
 
-
-.doc-notification {
-    z-index: 2000;
-    display: block;
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 16;
-    background-color: #dd0038;
-    padding: 1px;
-    margin: 0;
-    border: none;
-    border-bottom: 2px solid #fff;
-    cursor: pointer;
-    font-family: arial;
-    font-size: 12px;
-    text-align: center;
-    color: #fff;
-    font-weight: 800;
-    font-size: 11px;
-    margin-top: 10px;
-}
 </style>

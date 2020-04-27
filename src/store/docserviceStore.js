@@ -151,6 +151,25 @@ export const actions = {
         let desc = `Error scanning document`
         console.log(desc, e)
       })
+  },
+  restoreDocument ({ commit, state }, { vm, ownDoc, parentDocID, folderID, accountingFirmID, businessEntityID, cloneFile }) {
+    console.log(`In Action docservice/restoreDocument(docID=${ownDoc})`)
+
+    commit('scanStateMutation', { currentlyScanning: true, message: 'Restoring...'})
+    vm.$docservice.restoreDocument(vm, ownDoc, parentDocID, folderID, accountingFirmID, businessEntityID, cloneFile)
+      .then(result => {
+        commit('scanStateMutation', { currentlyScanning: true, message: 'Updating...'})
+        console.log(`result of save:`, result)
+        // Wait a while, to give the Google permissions time to propagate
+        setTimeout(() => {
+          window.location.reload()
+        }, 15000);
+      })
+      .catch(e => {
+        commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
+        let desc = `Error scanning document`
+        console.log(desc, e)
+      })
   }
 }
 

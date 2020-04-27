@@ -19,6 +19,11 @@
             input.input(v-model="docID")
         .tt-property
           .c-property-label
+            | Show 'Unlock/Lock'
+          .c-property-value
+            input(v-model="showRestoreBtn" type="checkbox")
+        .tt-property
+          .c-property-label
             | Width
           .c-property-value
             input.input(v-model="protectedWidth", placeholder="default = 1000")
@@ -48,6 +53,15 @@ export default {
       },
       set (value) {
         this.$content.setProperty({ vm: this, element: this.element, name: 'docID', value })
+      }
+    },
+    showRestoreBtn: {
+      get () {
+        let value = this.element['showRestoreBtn']
+        return value
+      },
+      set (value) {
+        this.$content.setProperty({ vm: this, element: this.element, name: 'showRestoreBtn', value })
       }
     },
     protectedWidth: {
