@@ -144,7 +144,7 @@ export const actions = {
         }, 15000)
         setTimeout(() => {
           window.location.reload()
-        }, 15000);
+        }, 10000);
       })
       .catch(e => {
         commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
@@ -163,11 +163,29 @@ export const actions = {
         // Wait a while, to give the Google permissions time to propagate
         setTimeout(() => {
           window.location.reload()
-        }, 15000);
+        }, 10000);
       })
       .catch(e => {
         commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
         let desc = `Error scanning document`
+        console.log(desc, e)
+      })
+  },
+  lockDocument ({ commit, state }, { vm, ownDoc }) {
+    console.log(`In Action docservice/lockDocument(docID=${ownDoc})`)
+
+    commit('scanStateMutation', { currentlyScanning: true, message: 'Starting...'})
+    vm.$docservice.lockDocument(vm, ownDoc)
+      .then(result => {
+        commit('scanStateMutation', { currentlyScanning: true, message: 'Locking...'})
+        console.log(`result of save:`, result)
+        setTimeout(() => {
+          window.location.reload()
+        }, 6000);
+      })
+      .catch(e => {
+        commit('scanStateMutation', { currentlyScanning: false, message: 'error' })
+        let desc = `Error locking document`
         console.log(desc, e)
       })
   }

@@ -233,6 +233,41 @@ class Docservice {
     })
   }
 
+  lockDocument (vm, ownDoc) {
+
+    console.log(`Docservice.js:lockDocument()`, ownDoc)
+
+    return new Promise((resolve, reject) => {
+      let url = `${this.endpoint()}/lock-document`;
+      console.log(`url is ${url}`);
+
+      let params = {
+        ownDoc: ownDoc
+      }
+      axios({
+        method: 'post',
+        url,
+        headers: {
+          // 'Authorization': 'Bearer ' + this.$docservice.jwt,
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        data: params
+      })
+        .then(response => {
+          // JSON responses are automatically parsed.
+          console.log(`RESPONSE IS`, response.data)
+          let reply = response.data
+          return resolve(reply);
+        })
+        .catch(e => {
+          axiosError(vm, url, params, e)
+          reject(e)
+        })
+
+    })
+  }
+
   refresh (state, { }) {
     console.log('Docservice.refresh()')
     this.store.commit('refreshMutation', { })

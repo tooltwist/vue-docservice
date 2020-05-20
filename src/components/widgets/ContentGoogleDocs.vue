@@ -5,14 +5,19 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+      div(v-if="isMasterDocument && $store.state.user.userMode.currentMode !== 'mentor'")
+        .master-doc-warning
+          div This is the master doc, and must not be edited/modified by a client or advisor (it will overwrite the master document)
+        .my-doc-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/document/d/${replacementDocID}/preview`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
+      div(v-else-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
         .my-doc-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/document/d/${replacementDocID}/preview`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
           br
           br
           br
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
+        button.button.is-primary(@click="showUnlockPlayPopUp", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
         .scanMessage {{scanMessage}}
         .is-clearfix
       div(v-else)
@@ -69,7 +74,8 @@ export default {
       // src: '',
       hasExistingDocument: '',
       replacementDocID: '',
-      hasBeenUpdated: false
+      hasBeenUpdated: false,
+      isMasterDocument: false
     }
   },
   watch: {
@@ -279,12 +285,14 @@ export default {
         });
       } else {
         if (!this.getHasbeenUpdated) {
+          let vm = this
           this.$dialog.confirm({
             title: "Lock Document",
             message:
-              "Lock this document by making some changes.",
+              "Are you sure you want to lock this document? Locking this document will mean you will not receive updated versions of this particular document; you will however, be able to preserve the work you’ve done.",
             confirmText: "Ok",
             onConfirm: () => {
+              this.$docservice.store.dispatch('lockDocument', { vm, ownDoc })
             }
           });
         } else {
@@ -311,7 +319,9 @@ export default {
         let url = `${endpoint}/get/latest-revision`
         let params = {
           file_id: fileId,
-          parent_doc_id: parentDocID
+          parent_doc_id: parentDocID,
+          mime_type: this.mimeType,
+          current_mode: this.$store.state.user.userMode.currentMode
         }
         
         axios({
@@ -342,9 +352,8 @@ export default {
         let replacementDocID = this.$docservice.store.getters['replacementDocID'](docID, userID)
         let predecessorDocumentID = this.$docservice.store.getters['predecessorDocumentID'](docID, userID)
 
-        console.log(`replacementDocID: ${docID} -> ${replacementDocID}`);
-
         // return replacementDocID
+        this.isMasterDocument = (replacementDocID === docID)
         this.replacementDocID = replacementDocID
         this.getCurrentRevision(replacementDocID)
       }
@@ -362,6 +371,18 @@ export default {
         this.hasExistingDocument = predecessorDocumentID
       }
       return ''
+    },
+    showUnlockPlayPopUp () {
+      let vm = this
+      this.$dialog.confirm({
+        title: "Unlock and Play",
+        message:
+          "By unlocking this document you make a cloned version just for yourself; go ahead and ‘play’ with the document to see how you might use it with a client. This will not affect your firm’s master doc set nor will it affect or be viewed by any client/s. It’s just for you!",
+        confirmText: "Play",
+        onConfirm: () => {
+          vm.doUpdate()
+        }
+      })
     },
     doUpdate () {
       let docID = this.element['docID']
@@ -384,72 +405,6 @@ export default {
       */
 
       let currentMode = this.$store.state.user.userMode.currentMode
-      
-      // if (currentMode !== 'mentor' && currentMode !== 'coach') {
-      //   masterDocuments.forEach((masterDocument) => {
-      //     let jsonData = {}
-      //     let currentClonedDoc = documentMap[masterDocument.docID]
-      //     if (currentClonedDoc) { // current cloned document
-      //       if (masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
-      //         jsonData.docID = currentClonedDoc.docID
-      //         if (currentClonedDoc.predecessorDocumentID) {
-      //           jsonData.masterDocID = currentClonedDoc.predecessorDocumentID
-      //         }
-      //         jsonData.mimeType = masterDocument.mimeType
-      //         documentsToBeClone.push(jsonData)
-      //       } else {
-      //         jsonData.docID = currentClonedDoc.docID
-      //         if (currentClonedDoc.predecessorDocumentID) {
-      //           jsonData.docID = currentClonedDoc.predecessorDocumentID
-      //         }
-      //         jsonData.mimeType = masterDocument.mimeType
-      //         documentsToBeClone.push(jsonData)
-      //       }
-      //     }
-      //   })
-      // } else {
-      //   /*
-      //   *   If current user is mentor and coach
-      //   *   Iterate masterDocuments data and find the current spreadsheet that have been clicked
-      //   *   and replace it's master document ID into current document ID
-      //   */
-      //   masterDocuments.forEach((masterDocument) => {
-      //     let jsonData = {}
-      //     let currentClonedDoc = documentMap[masterDocument.docID]
-      //     if (currentClonedDoc) { // current cloned document
-      //       if (masterDocument.docID === docID && masterDocument.mimeType === this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
-      //         jsonData.docID = currentClonedDoc.docID
-      //         jsonData.masterDocID = masterDocument.docID
-      //         jsonData.mimeType = masterDocument.mimeType
-      //         documentsToBeClone.push(jsonData)
-      //       } else {
-      //         if (masterDocument.mimeType !== this.mimeType) { // this.mimeType === 'application/vnd.google-apps.spreadsheet'
-      //           jsonData.docID = masterDocument.docID
-      //           jsonData.mimeType = masterDocument.mimeType
-      //           documentsToBeClone.push(jsonData)
-      //         }
-      //       }
-      //     } else { // if there is no cloned files
-      //       jsonData.docID = masterDocument.docID
-      //       jsonData.mimeType = masterDocument.mimeType
-      //       documentsToBeClone.push(jsonData)
-      //     }
-      //   })
-      // }
-
-      // console.log(documentsToBeClone)
-      // return
-
-      /*
-      *   Find current clicked spreadsheet and replace it with cloned spreadsheet document
-      *   params: docID
-      // */
-      // let currentSpreadsheetDocID = documentMap[docID]
-      // if (currentSpreadsheetDocID) {
-      //   docID = currentSpreadsheetDocID.docID
-      // }
-
-      // let currentMode = this.$store.state.user.userMode.currentMode
       let currentDocument = {
         docID : documentMap[docID].docID,
         mimeType : 'application/vnd.google-apps.document'
@@ -546,5 +501,21 @@ export default {
     width: 25px;
     font-size: 16px;
     color: #999;
+  }
+
+  .master-doc-warning {
+    height: 15px;
+    line-height: 13px;
+    font-weight: 700;
+    opacity: 0.9;
+    margin-bottom: -18px;
+    position: relative;
+    padding-left: 3px;
+    margin-left: -2px;
+    margin-right: -2px;
+    background-color: red;
+    font-size: 13px;
+    color: white;
+    text-align: center;
   }
 </style>

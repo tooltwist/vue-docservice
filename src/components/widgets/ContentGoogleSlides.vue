@@ -4,10 +4,15 @@
 
     // View mode
     .container(v-if="pageEditMode==='view'")
-      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+      div(v-if="isMasterDocument && $store.state.user.userMode.currentMode !== 'mentor'")
+        .master-doc-warning
+          div This is the master doc, and must not be edited/modified by a client or advisor (it will overwrite the master document)
         .my-slides-container
           iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="height: 105% !important")
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
+      div(v-else-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+        .my-slides-container
+          iframe(:src="src" :docId="docId" :mimeType="mimeType" frameborder="0" zwidth="640" zheight="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true" style="height: 105% !important")
+        button.button.is-primary(@click="showUnlockPlayPopUp", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
         | &nbsp;
         .scanMessage {{scanMessage}}
         .is-clearfix
@@ -64,7 +69,8 @@ export default {
       //docId: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
       src: '',
       hasExistingDocument: '',
-      hasBeenUpdated: false
+      hasBeenUpdated: false,
+      isMasterDocument: false
     }
   },
   watch: {
@@ -200,12 +206,14 @@ export default {
         });
       } else {
         if (!this.getHasbeenUpdated) {
+          let vm = this
           this.$dialog.confirm({
             title: "Lock Document",
             message:
-              "Lock this document by making some changes.",
+              "Are you sure you want to lock this document? Locking this document will mean you will not receive updated versions of this particular document; you will however, be able to preserve the work you’ve done.",
             confirmText: "Ok",
             onConfirm: () => {
+              this.$docservice.store.dispatch('lockDocument', { vm, ownDoc })
             }
           });
         } else {
@@ -222,6 +230,18 @@ export default {
         }
       }
     },
+    showUnlockPlayPopUp () {
+      let vm = this
+      this.$dialog.confirm({
+        title: "Unlock and Play",
+        message:
+          "By unlocking this document you make a cloned version just for yourself; go ahead and ‘play’ with the document to see how you might use it with a client. This will not affect your firm’s master doc set nor will it affect or be viewed by any client/s. It’s just for you!",
+        confirmText: "Play",
+        onConfirm: () => {
+          vm.doUpdate()
+        }
+      })
+    },
     getCurrentRevision (fileId) {
         let vm = this
         let masterFile = this.element['docID']
@@ -232,7 +252,9 @@ export default {
         let url = `${endpoint}/get/latest-revision`
         let params = {
           file_id: fileId,
-          parent_doc_id: parentDocID
+          parent_doc_id: parentDocID,
+          mime_type: this.mimeType,
+          current_mode: this.$store.state.user.userMode.currentMode
         }
         
         axios({
@@ -245,7 +267,6 @@ export default {
           data: params
         })
         .then(response => {
-          
           this.hasBeenUpdated = (response.data.revision != 1 && response.data.revision !=  null)          
         })
         .catch(e => {
@@ -274,6 +295,8 @@ export default {
           let src = `https://docs.google.com/presentation/d/${replacementDocID}/preview?slide=id.p1`
           console.log(`unpublished url=${src}`)
           // return src
+          
+          this.isMasterDocument = (replacementDocID === docID)
           this.src = src
           this.getCurrentRevision(replacementDocID)
         }
@@ -469,5 +492,21 @@ export default {
     width: 25px;
     font-size: 16px;
     color: #999;
+  }
+
+  .master-doc-warning {
+    height: 15px;
+    line-height: 13px;
+    font-weight: 700;
+    opacity: 0.9;
+    margin-bottom: -18px;
+    position: relative;
+    padding-left: 3px;
+    margin-left: -2px;
+    margin-right: -2px;
+    background-color: red;
+    font-size: 13px;
+    color: white;
+    text-align: center;
   }
 </style>

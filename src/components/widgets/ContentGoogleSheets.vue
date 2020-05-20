@@ -8,11 +8,16 @@
       //- | mode is&nbsp;
       //- b {{displayMode}}
       //- | &nbsp;{{modeDescription}} - {{refreshCounter}}
-      div(v-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
+      div(v-if="isMasterDocument && $store.state.user.userMode.currentMode !== 'mentor'")
+        .master-doc-warning
+          div This is the master doc, and must not be edited/modified by a client or advisor (it will overwrite the master document)
+        .my-sheets-container(:style="contentEditStyle")
+          iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
+      div(v-else-if="hasExistingDocument === '' && $store.state.user.userMode.currentMode === 'advisor'")
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/preview?gid=0&chrome=false&single=true&widget=false&headers=false`" :docID="docID", :mimeType="mimeType", width="1000", height="500", scrolling="yes")
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
+        button.button.is-primary(@click="showUnlockPlayPopUp", :class="{ 'is-loading': currentlyScanning }") Unlock & Play
         | &nbsp;
         a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
         | &nbsp;
@@ -22,7 +27,7 @@
         .my-sheets-container(:style="contentEditStyle")
           // Regular embedded mode, to allow editing (with menus, rows and tabs)
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        button.button.is-primary(@click="showUpdatePopUp", :class="{ 'is-loading': currentlyScanning }") Update
         | &nbsp;
         a.open-new-tab.button.is-primary(v-if="canOpenInNewTab" target="_blank", :href="`https://docs.google.com/spreadsheets/d/${replacementDocID}`") Open in new Tab
         | &nbsp;
@@ -49,7 +54,7 @@
       div(v-else-if="displayMode==='editable-nomenus'")
         .my-sheets-container(:style="contentEditStyle")
           iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=false&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", width="1000", height="500", frameborder="solid 1px red", scrolling="yes")
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        button.button.is-primary(@click="showUpdatePopUp", :class="{ 'is-loading': currentlyScanning }") Update
         | &nbsp;
         button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
@@ -62,7 +67,7 @@
             div(:style="{overflow:'hidden', margin:'0px auto', maxWidth:`${width}px`, backgroundColor:'pink'}")
               iframe(:src="`https://docs.google.com/spreadsheets/d/${replacementDocID}/edit?gid=0&chrome=false&single=true&widget=true&headers=false&rm=minimal`", :docID="docID", :mimeType="mimeType", :style="{ border:'0px none', marginRight:'-10px', marginLeft:'-45px', height:`${height + 23}px`, marginTop:'-23px', width:`${width}px`, overflow:'hidden' }", scrolling="no")
           div(style="clear: both;")
-        button.button.is-primary(@click="doUpdate", :class="{ 'is-loading': currentlyScanning }") Update
+        button.button.is-primary(@click="showUpdatePopUp", :class="{ 'is-loading': currentlyScanning }") Update
         | &nbsp;
         button.restore-btn.button.is-primary(v-if="showRestoreBtn && allowRestoreBtn" @click="restore", :class="{ 'is-loading': currentlyScanning }") {{getRestoreBtnLabel}}
         .scanMessage {{scanMessage}}
@@ -140,7 +145,8 @@ export default {
       //docID: '2PACX-1vT14-yIpiY4EbQN0XscNBhMuJDZ-k4n03-cWPEgK_kyCTP35ehchuWiPDrTq2TIGYl6nFToRGQRJXZl',
       replacementDocID: '',
       hasExistingDocument: '',
-      hasBeenUpdated: false
+      hasBeenUpdated: false,
+      isMasterDocument: false
     }
   },
   watch: {
@@ -425,9 +431,10 @@ export default {
           this.$dialog.confirm({
             title: "Lock Document",
             message:
-              "Lock this document by making some changes.",
+              "Are you sure you want to lock this document?  Locking this document will mean you will not receive updated versions of this particular document; you will however, be able to preserve the work you’ve done.",
             confirmText: "Ok",
             onConfirm: () => {
+              this.$docservice.store.dispatch('lockDocument', { vm, ownDoc })
             }
           });
         } else {
@@ -454,7 +461,9 @@ export default {
         let url = `${endpoint}/get/latest-revision`
         let params = {
           file_id: fileId,
-          parent_doc_id: parentDocID
+          parent_doc_id: parentDocID,
+          mime_type: this.mimeType,
+          current_mode: this.$store.state.user.userMode.currentMode
         }
         
         axios({
@@ -473,6 +482,30 @@ export default {
           axiosError(vm, url, params, e)
           console.log(e)
         })
+    },
+    showUnlockPlayPopUp () {
+      let vm = this
+      this.$dialog.confirm({
+        title: "Unlock and Play",
+        message:
+          "By unlocking this document you make a cloned version just for yourself; go ahead and ‘play’ with the document to see how you might use it with a client. This will not affect your firm’s master doc set nor will it affect or be viewed by any client/s. It’s just for you!",
+        confirmText: "Play",
+        onConfirm: () => {
+          vm.doUpdate()
+        }
+      })
+    },
+    showUpdatePopUp () {
+      let vm = this
+      this.$dialog.confirm({
+        title: "Update Document",
+        message:
+          "Do you want to ‘push’ the information from your input table into your master document now? – (You can wait until you’ve finished with all the tables linked to this document, if you prefer)",
+        confirmText: "Update",
+        onConfirm: () => {
+          vm.doUpdate()
+        }
+      })
     },
     doUpdate () {
       console.log(`doUpdate()`);
@@ -578,6 +611,7 @@ export default {
 
         // return replacementDocID
         this.replacementDocID = replacementDocID
+        this.isMasterDocument = (replacementDocID === docID)
         this.getCurrentRevision(replacementDocID)
       }
       return ''
@@ -682,6 +716,22 @@ export default {
     width: 25px;
     font-size: 16px;
     color: #999;
+  }
+
+  .master-doc-warning {
+    height: 15px;
+    line-height: 13px;
+    font-weight: 700;
+    opacity: 0.9;
+    margin-bottom: -18px;
+    position: relative;
+    padding-left: 3px;
+    margin-left: -2px;
+    margin-right: -2px;
+    background-color: red;
+    font-size: 13px;
+    color: white;
+    text-align: center;
   }
 
 </style>
